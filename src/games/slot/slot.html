@@ -1,0 +1,73 @@
+<main class="stage view" id="slotView">
+  <div class="machine">
+    <div class="cabinet">
+      <header class="marquee">
+        <div class="bulbs" id="bulbsTop"></div>
+        <h1 class="title">LUCKY 7</h1>
+        <div class="tagline" id="tagline">Super Deluxe ’86</div>
+        <div class="bulbs" id="bulbsBot"></div>
+      </header>
+
+      <section class="glass" aria-label="릴">
+        <div class="window-row">
+          <div class="lamps" aria-hidden="true">
+            <div class="lamp-row"><div class="lamp" data-l="1" style="--lc:#5ef2e6">2</div><div class="lamp" data-l="3" style="--lc:#7cff6b">4</div></div>
+            <div class="lamp-row"><div class="lamp" data-l="0" style="--lc:#ff4a4a">1</div></div>
+            <div class="lamp-row"><div class="lamp" data-l="2" style="--lc:#ffd400">3</div><div class="lamp" data-l="4" style="--lc:#ff6bd5">5</div></div>
+          </div>
+          <div class="reels" id="reels">
+            <div class="reel"><div class="strip"></div></div>
+            <div class="reel"><div class="strip"></div></div>
+            <div class="reel"><div class="strip"></div></div>
+            <div class="curve"></div>
+            <svg class="lines" id="lines" aria-hidden="true"></svg>
+          </div>
+          <div class="lamps" aria-hidden="true">
+            <div class="lamp-row"><div class="lamp" data-l="1" style="--lc:#5ef2e6">2</div><div class="lamp" data-l="4" style="--lc:#ff6bd5">5</div></div>
+            <div class="lamp-row"><div class="lamp" data-l="0" style="--lc:#ff4a4a">1</div></div>
+            <div class="lamp-row"><div class="lamp" data-l="2" style="--lc:#ffd400">3</div><div class="lamp" data-l="3" style="--lc:#7cff6b">4</div></div>
+          </div>
+        </div>
+      </section>
+
+      <div class="panels">
+        <div class="panel"><label>CREDIT</label><div class="seg" id="ledCredit"></div></div>
+        <div class="panel"><label>BET</label><div class="seg" id="ledBet"></div></div>
+        <div class="panel"><label>WIN</label><div class="seg" id="ledWin"></div></div>
+      </div>
+      <div class="ticker" aria-live="polite"><span id="msg">PULL THE LEVER</span></div>
+
+      <div class="chrome-strip"></div>
+      <div class="deck">
+        <div class="btns">
+          <button class="btn b-yellow" id="btnLines">LINES<small id="subLines">5줄</small></button>
+          <button class="btn b-blue" id="btnBet">BET<small id="subBet">×1</small></button>
+          <button class="btn b-red" id="btnMax">MAX<small>최대베팅</small></button>
+          <button class="btn b-green" id="btnSpin">SPIN</button>
+        </div>
+      </div>
+
+      <section class="belly" aria-label="배당표">
+        <h2>Pays × line bet</h2>
+        <div class="pays" id="pays"></div>
+        <p class="lines-note">LINES 1 = 가운데 · 3 = 가로 3줄 · 5 = 대각선 포함<br>BET = 라인당 베팅(×1~×1,000) · 총 베팅 = 라인 × BET</p>
+      </section>
+    </div>
+
+    <div class="lever" id="lever" tabindex="0" role="button" aria-label="레버 당기기">
+      <div class="mount"></div>
+      <div class="rod" id="rod"></div>
+      <div class="ball" id="ball"></div>
+    </div>
+
+    <div class="scrim" id="scrim"></div>
+    <div class="foot">
+      <button class="chip" id="slotBack">← 로비</button>
+      <button class="chip only-m" id="btnPays">배당표</button>
+      <button class="chip" id="btnRefill">+1,000</button>
+      <button class="chip" id="btnTheme" aria-label="테마 바꾸기">’74</button>
+      <button class="chip" id="btnSound">소리 켬</button>
+    </div>
+    <p class="help">레버를 끌어내리거나 스페이스바로 스핀 · L 라인 · B/↑ 베팅 올림 · V/↓ 내림 · M 최대</p>
+  </div>
+</main>

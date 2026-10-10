@@ -1,0 +1,32 @@
+/* ===== NEW GAMES ===== */
+/* =========== SHARED GAME SHELL =========== */
+.gview{--gold:#e8b84a;--gold-hi:#ffd36b;--gold-dim:#8a6200;color:var(--ink);font-family:"Inter","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif}
+.gwrap{width:min(100%,520px);margin:0 auto;padding:calc(10px + env(safe-area-inset-top,0px)) 14px calc(28px + env(safe-area-inset-bottom,0px))}
+.g-head{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:8px;margin-bottom:12px}
+.g-back{white-space:nowrap}
+.g-title{text-align:center;line-height:1;min-width:0}
+.g-title h1{margin:0;font:400 clamp(20px,5.6vw,28px)/1 "Bungee",Impact,sans-serif;white-space:nowrap;
+  background:linear-gradient(180deg,#fff 0%,#dfe5ec 38%,#6d7786 50%,#f2f5f8 56%,#b8c1cc 80%,#fff 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 2px 0 #b3121f) drop-shadow(0 0 10px rgba(255,45,120,.5))}
+.g-sub{display:block;font:400 19px/1 "Yellowtail",cursive;color:#5ef2e6;margin-top:3px;text-shadow:0 0 6px #23d5c8;white-space:nowrap}
+.g-bank{display:flex;flex-direction:column;align-items:flex-end;background:#000;border-radius:6px;padding:4px 6px 5px;box-shadow:inset 0 0 0 1.5px #3a3a3a}
+.g-bank-l{font:13px/1 "VT323",monospace;letter-spacing:.1em;color:var(--gold);margin-bottom:2px}
+.g-led{width:calc(8*12px)}
+body .g-led .seg,body .g-led .drum{max-width:none;width:100%}
+.g-panel{margin-top:14px;border-radius:14px;padding:12px;background:radial-gradient(ellipse at 50% 0%,#2a0f45,#0b0414 80%);
+  box-shadow:inset 0 0 0 2px var(--gold),inset 0 0 0 4px #000}
+.g-h2{margin:0 0 10px;font:400 22px/1 "Yellowtail",cursive;color:var(--gold-hi);text-shadow:0 0 8px rgba(232,184,74,.7);text-align:center}
+.g-h2 span{font:20px/1 "VT323",monospace;color:#5ef2e6;text-shadow:0 0 6px #23d5c8;margin-left:6px;letter-spacing:.1em}
+.g-note{margin:10px 0 0;font:13px/1.5 "Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;color:var(--muted);text-align:center}
+.g-empty{font:14px/1 "Apple SD Gothic Neo",system-ui,sans-serif;color:var(--muted);opacity:.7}
+.g-betrow{display:flex;align-items:center;gap:8px;margin-top:12px}
+.g-betlbl{font:20px/1 "VT323",monospace;color:var(--gold);letter-spacing:.1em}
+.g-betled{flex:1;background:#000;border-radius:6px;padding:5px 8px;box-shadow:inset 0 0 0 1.5px #3a3a3a}
+body .g-betled .seg,body .g-betled .drum{max-width:calc(7*20px);margin-left:auto}
+.g-betrow .chip{padding:8px 11px;font-size:14px}
+.g-rack{margin-top:12px;padding:8px 10px 10px;border-radius:14px 14px 22px 22px;
+  background:linear-gradient(180deg,#2a0d08,#4a1c12 30%,#2a0d08);box-shadow:inset 0 2px 0 rgba(255,255,255,.08),0 0 0 2px var(--gold-dim)}
+.g-tray{display:flex;justify-content:center;gap:6px}
+.g-tray .bchip{width:40px;height:40px;font-size:10px;flex:0 0 auto}
+@media (max-width:400px){ .g-tray .bchip{width:36px;height:36px;font-size:9px} .g-tray{gap:4px} .g-rack{padding:7px 6px 9px} }
+.gview .bchip:disabled{opacity:.35;cursor:default}

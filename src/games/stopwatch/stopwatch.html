@@ -1,0 +1,57 @@
+<div class="view gview" id="twView">
+  <div class="gwrap">
+    <header class="g-head">
+      <button class="chip g-back" data-back type="button">← 로비</button>
+      <div class="g-title"><h1>PERFECT STOP</h1><span class="g-sub" data-sub="Stop the clock|precision · ms">Stop the clock</span></div>
+      <div class="g-bank"><span class="g-bank-l">BANKROLL</span><div class="g-led"><div class="seg" id="twBank"></div></div></div>
+    </header>
+
+    <section class="tw-device">
+      <div class="tw-target">
+        <span class="tw-lbl">TARGET</span>
+        <div class="tw-num tw-num-s"><span class="tw-g"><div class="seg" id="twTS"></div></span><i class="tw-dot"></i><span class="tw-g"><div class="seg" id="twTM"></div></span></div>
+        <span class="tw-unit">SEC</span>
+      </div>
+      <div class="tw-screen" id="twScreen">
+        <div class="tw-num tw-num-l"><span class="tw-g"><div class="seg" id="twCS"></div></span><i class="tw-dot"></i><span class="tw-g"><div class="seg" id="twCM"></div></span></div>
+        <div class="tw-blindcover" aria-hidden="true"><span>BLIND</span></div>
+      </div>
+      <div class="tw-verdict" id="twVerdict" aria-live="polite">베팅하고 START를 누르세요</div>
+      <div class="tw-gauge" aria-hidden="true">
+        <div class="tw-zones" id="twZones"></div>
+        <div class="tw-center"></div>
+        <div class="tw-marker" id="twMarker"></div>
+        <div class="tw-ticks"><span id="twTickL">−</span><span>EARLY · 0 · LATE</span><span id="twTickR">+</span></div>
+      </div>
+      <div class="tw-btnwrap">
+        <button class="tw-btn" id="twBtn" type="button"><span id="twBtnLabel">START</span></button>
+        <span class="tw-key">SPACE</span>
+      </div>
+    </section>
+
+    <section class="g-panel tw-bet">
+      <div class="tw-modes" role="group" aria-label="모드">
+        <button class="tw-mode on" data-mode="show" type="button">SHOW<small>계속 보임</small></button>
+        <button class="tw-mode" data-mode="blind" type="button">BLIND<small>2초 후 꺼짐</small></button>
+      </div>
+      <div class="g-betrow">
+        <span class="g-betlbl">BET</span>
+        <div class="g-betled"><div class="seg" id="twBet"></div></div>
+        <button class="chip" id="twClear" type="button">지우기</button>
+        <button class="chip" id="twX2" type="button">×2</button>
+      </div>
+      <div class="g-rack"><div class="g-tray" id="twChips"></div></div>
+    </section>
+
+    <section class="g-panel tw-pay">
+      <h2 class="g-h2">PAYOUT <span id="twModeName">SHOW</span></h2>
+      <div class="tw-rows" id="twRows"></div>
+      <p class="g-note">배당은 돌려받는 총액 기준이에요 (×1 = 본전). 목표 +3초가 지나면 자동 실패.</p>
+    </section>
+
+    <section class="g-panel">
+      <h2 class="g-h2">HISTORY</h2>
+      <div class="tw-hist" id="twHist"><span class="g-empty">아직 기록이 없어요</span></div>
+    </section>
+  </div>
+</div>

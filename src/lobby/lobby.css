@@ -1,0 +1,148 @@
+/* =========== LOBBY · DELUXE =========== */
+.lobby{min-height:100vh;padding:calc(18px + env(safe-area-inset-top,0px)) 14px 40px;position:relative}
+.lb-wrap{width:min(100%,760px);margin:0 auto}
+.sign{position:relative;text-align:center;border-radius:24px;padding:14px 14px 12px;
+  background:radial-gradient(ellipse at 50% 0%,#3b1a5a,#120620 72%);
+  box-shadow:inset 0 0 0 2px #000,inset 0 0 40px rgba(255,80,160,.35),0 0 0 4px #e9edf2,0 0 0 6px #7d8794,0 0 0 8px #f4f7fa,0 30px 60px rgba(0,0,0,.6)}
+.sign .bulbs{padding:0 4px}
+.sign-welcome{font-family:"Yellowtail",cursive;font-size:clamp(28px,7vw,42px);color:#5ef2e6;margin-top:6px;line-height:1;
+  text-shadow:0 0 6px #23d5c8,0 0 18px rgba(35,213,200,.7)}
+.sign-name{margin:2px 0 0;font-family:"Bungee",Impact,sans-serif;font-weight:400;font-size:clamp(46px,13vw,98px);line-height:1;letter-spacing:.01em;
+  background:linear-gradient(180deg,#fff 0%,#dfe5ec 38%,#6d7786 50%,#f2f5f8 56%,#b8c1cc 80%,#fff 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 3px 0 #b3121f) drop-shadow(0 0 2px #ff2d55) drop-shadow(0 0 16px rgba(255,45,120,.6))}
+.sign-sub{font:clamp(18px,5vw,24px)/1 "VT323",monospace;color:var(--gold-hi);letter-spacing:.2em;white-space:nowrap;margin:8px 0 8px;text-shadow:0 0 8px rgba(232,184,74,.8)}
+.sign-meta{display:none}
+
+.bank-card{margin-top:22px;background:#000;border-radius:14px;padding:12px 14px 12px;
+  box-shadow:inset 0 0 0 2px var(--gold),inset 0 0 0 4px #000,inset 0 0 0 5px #3a2a10,0 16px 30px rgba(0,0,0,.5)}
+.bank-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}
+.bank-label{font:20px/1 "VT323",monospace;color:var(--gold);letter-spacing:.14em}
+body .bank-led .seg,body .bank-led .drum{max-width:calc(var(--n)*42px);margin:0 auto}
+.bank-led .drum i{font-size:clamp(20px,6vw,32px)}
+.bank-note{margin-top:8px;text-align:center;font:13px/1.3 "Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;color:var(--muted)}
+
+.lb-section{margin:28px 0 14px;display:flex;align-items:center;gap:12px;font:400 26px/1 "Yellowtail",cursive;color:var(--gold-hi);
+  text-shadow:0 0 8px rgba(232,184,74,.7)}
+.lb-section::before,.lb-section::after{content:"";flex:1;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.games{display:grid;grid-template-columns:1fr;gap:16px}
+@media (min-width:560px){ .games{grid-template-columns:1fr 1fr} }
+.game{--g:#ff3b6b;appearance:none;border:0;cursor:pointer;color:var(--ink);text-align:left;position:relative;
+  display:grid;grid-template-columns:1fr auto;grid-template-areas:"art art" "name name" "kind kind" "meta play";gap:4px 10px;
+  padding:16px 16px 16px;border-radius:18px;
+  background:linear-gradient(180deg,rgba(20,8,32,.95),rgba(8,3,14,.98));
+  box-shadow:inset 0 0 0 2px var(--g),0 0 18px color-mix(in srgb,var(--g) 45%,transparent),0 18px 30px rgba(0,0,0,.5);
+  transition:transform .2s ease,box-shadow .2s ease}
+.game:hover,.game:focus-visible{transform:translateY(-4px);outline:none;
+  box-shadow:inset 0 0 0 2px var(--g),0 0 34px color-mix(in srgb,var(--g) 75%,transparent),0 24px 40px rgba(0,0,0,.55)}
+.game:active{transform:translateY(-1px)}
+.g-bj{--g:#23d5c8}
+.g-no{display:none}
+.g-art{grid-area:art;display:flex;justify-content:center;height:clamp(96px,22vw,130px);margin-bottom:6px;
+  border-radius:12px;background:radial-gradient(ellipse at 50% 80%,color-mix(in srgb,var(--g) 22%,transparent),transparent 70%)}
+.g-art svg{height:100%;width:auto;overflow:visible}
+.g-name{grid-area:name;font:400 clamp(26px,6vw,32px)/1 "Bungee",Impact,sans-serif;color:#fff;
+  text-shadow:0 0 4px var(--g),0 0 14px var(--g)}
+.g-kind{grid-area:kind;font:15px/1.3 "Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;color:var(--muted)}
+.g-meta{grid-area:meta;display:flex;flex-wrap:wrap;gap:6px;align-self:end}
+.g-meta span{font:17px/1 "VT323",monospace;color:var(--amber);border:1px solid rgba(255,176,0,.35);border-radius:4px;padding:3px 6px 2px}
+.g-play{grid-area:play;align-self:end;font:400 15px/1 "Bungee",Impact,sans-serif;color:#120018;background:var(--g);
+  padding:9px 14px;border-radius:999px;box-shadow:0 0 12px var(--g)}
+/* art · deluxe */
+.a-body{fill:#b3121f;stroke:#e9edf2;stroke-width:3}
+.a-top{fill:#3b1a5a;stroke:#ff6bd5;stroke-width:1.5}
+.a-win{fill:#f7efd8;stroke:#e8b84a;stroke-width:2}
+.a-div{stroke:#9aa3b0;stroke-width:1.5}
+.a-seven{font:400 30px "Bungee",Impact,sans-serif;fill:#d1001a}
+.a-btn{fill:#f2b705}.a-btn2{fill:#2a6cf0}.a-btn3{fill:#18b84a}
+.a-rod{stroke:#e9edf2;stroke-width:4;stroke-linecap:round}
+.a-ball{fill:#e0182b;stroke:#4a0006;stroke-width:1.5}
+.a-mount{fill:#c9d1db}
+.a-felt{fill:#0f5c36;stroke:#e8b84a;stroke-width:2}
+.a-card{fill:#fffdf6;stroke:#222;stroke-width:1.5}
+.a-rank{font:700 14px "Inter",sans-serif;fill:#111}
+.a-suit{font-size:30px;fill:#111}
+.a-rank.red,.a-suit.red{fill:#c8102e}
+.a-chip{fill:#c8102e;stroke:#fff;stroke-width:3;stroke-dasharray:4 4}
+.a-chip-in{fill:#fff;opacity:.9}
+
+.lb-foot{display:flex;justify-content:center;gap:10px;margin-top:22px;flex-wrap:wrap}
+.lb-fine{text-align:center;margin:12px 0 0;color:var(--muted);font:13px/1.5 "Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif}
+
+/* =========== LOBBY · MONO =========== */
+body.mono .sign{background:#fff;color:#000;border-radius:0;box-shadow:none;border-bottom:3px solid #000;padding:6px 0 12px;text-align:left}
+body.mono .sign .bulbs,body.mono .sign-welcome,body.mono .sign-sub{display:none}
+body.mono .sign-name{background:none;color:#000;-webkit-text-fill-color:#000;filter:none;font-family:"Archivo Black","Helvetica Neue",Arial,sans-serif;
+  text-transform:lowercase;letter-spacing:-.05em;line-height:.88;font-size:clamp(52px,15vw,112px)}
+body.mono .sign-meta{display:flex;justify-content:space-between;font:400 11px/1.2 "Space Mono",monospace;letter-spacing:.22em;text-transform:uppercase;margin-top:10px}
+body.mono .bank-card{background:#000;border-radius:2px;box-shadow:none}
+body.mono .bank-label{color:#fff;font:400 11px/1 "Space Mono",monospace;letter-spacing:.24em}
+body.mono .bank-note{color:#fff;font:400 11px/1.4 "Space Mono","Apple SD Gothic Neo",sans-serif;opacity:.8}
+body.mono .bank-card .chip{background:#000;color:#fff;border-color:#fff}
+body.mono .lb-section{font:700 11px/1 "Space Mono","Apple SD Gothic Neo",sans-serif;letter-spacing:.3em;color:#000;text-shadow:none;text-transform:uppercase}
+body.mono .lb-section::before{display:none}
+body.mono .lb-section::after{background:#000;height:3px}
+body.mono .game{background:#fff;color:#000;border-radius:4px;box-shadow:0 0 0 3px #000,8px 8px 0 #000;transition:transform .12s ease,box-shadow .12s ease,background .12s,color .12s}
+body.mono .game:hover,body.mono .game:focus-visible{transform:translate(-2px,-2px);box-shadow:0 0 0 3px #000,11px 11px 0 #000;background:#000;color:#fff}
+body.mono .game:active{transform:translate(4px,4px);box-shadow:0 0 0 3px #000,3px 3px 0 #000}
+body.mono .g-no{display:block;position:absolute;top:12px;right:14px;font:400 34px/1 "Archivo Black",Arial,sans-serif;letter-spacing:-.04em}
+body.mono .g-art{background:none;border-bottom:2px solid currentColor;border-radius:0;padding-bottom:8px;margin-bottom:10px}
+body.mono .game:hover .g-art svg,body.mono .game:focus-visible .g-art svg{filter:invert(1)}
+body.mono .g-name{color:inherit;text-shadow:none;font-family:"Archivo Black",Arial,sans-serif;text-transform:lowercase;letter-spacing:-.04em}
+body.mono .g-kind{color:inherit;font:400 12px/1.4 "Space Mono","Apple SD Gothic Neo",sans-serif}
+body.mono .g-meta span{color:inherit;border:1.5px solid currentColor;border-radius:0;font:700 10px/1 "Space Mono","Apple SD Gothic Neo",sans-serif;letter-spacing:.06em;padding:4px 6px}
+body.mono .g-play{background:none;color:inherit;box-shadow:none;padding:0;font:700 13px/1 "Space Mono",monospace;letter-spacing:.12em;border-bottom:2px solid currentColor;padding-bottom:3px;border-radius:0}
+body.mono .a-body{fill:#fff;stroke:#000;stroke-width:3}
+body.mono .a-top{fill:#000;stroke:none}
+body.mono .a-win{fill:#fff;stroke:#000;stroke-width:2.5}
+body.mono .a-div{stroke:#000;stroke-width:2}
+body.mono .a-seven{font-family:"Archivo Black",Arial,sans-serif;fill:#000}
+body.mono .a-btn,body.mono .a-btn2,body.mono .a-btn3{fill:#fff;stroke:#000;stroke-width:2}
+body.mono .a-btn3{fill:#000}
+body.mono .a-rod{stroke:#000}
+body.mono .a-ball{fill:#000;stroke:none}
+body.mono .a-mount{fill:#fff;stroke:#000;stroke-width:2.5}
+body.mono .a-felt{fill:#fff;stroke:#000;stroke-width:2.5}
+body.mono .a-card{fill:#fff;stroke:#000;stroke-width:2.5;rx:2}
+body.mono .a-rank,body.mono .a-rank.red{font-family:"Space Mono",monospace;fill:#000}
+body.mono .a-suit,body.mono .a-suit.red{fill:#000}
+body.mono .a-chip{fill:#000;stroke:#fff}
+body.mono .a-chip-in{fill:#fff;opacity:1}
+
+.g-tw{--g:#ffd400}
+.g-hl{--g:#7cff6b}
+.a-tw-btn,.a-tw-crown{fill:#c9d1db}
+.a-tw-case{fill:#e9edf2;stroke:#7d8794;stroke-width:3}
+.a-tw-face{fill:#120620;stroke:#ffd400;stroke-width:2}
+.a-tw-lcd{fill:#000;stroke:#3a3a3a}
+.a-tw-digits{font:15px "VT323",monospace;fill:#5ef2e6}
+.a-tw-hand{stroke:#ff3b2f;stroke-width:3;stroke-linecap:round}
+.a-tw-hub{fill:#ffd400}
+.a-die{fill:#c8102e;stroke:#5a0008;stroke-width:2}
+.a-pip{fill:#fff}
+body.mono .a-tw-btn,body.mono .a-tw-crown{fill:#000}
+body.mono .a-tw-case{fill:#fff;stroke:#000;stroke-width:3}
+body.mono .a-tw-face{fill:#fff;stroke:#000;stroke-width:2}
+body.mono .a-tw-lcd{fill:#000;stroke:none}
+body.mono .a-tw-digits{font:700 11px "Space Mono",monospace;fill:#fff}
+body.mono .a-tw-hand{stroke:#000}
+body.mono .a-tw-hub{fill:#000}
+body.mono .a-die{fill:#fff;stroke:#000;stroke-width:3}
+body.mono .a-pip{fill:#000}
+
+.g-cl{--g:#ff8a00}
+@media (min-width:560px){ .games > .game:last-child:nth-child(odd){grid-column:1/-1} }
+.a-cl-rail{stroke:#c9d1db;stroke-width:4;stroke-linecap:round}
+.a-cl-cable{stroke:#c9d1db;stroke-width:1.5}
+.a-cl-hub{fill:#e9edf2;stroke:#5b6572;stroke-width:1.5}
+.a-cl-arm{fill:none;stroke:#e9edf2;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round}
+.a-cl-b1{fill:#1fb6c9}.a-cl-b2{fill:#d6248f}.a-cl-b3{fill:#d99a00}
+.a-cl-rb{fill:#fff}.a-cl-rb3{fill:#c8102e}
+body.mono .a-cl-rail,body.mono .a-cl-cable{stroke:#000}
+body.mono .a-cl-hub{fill:#000;stroke:none}
+body.mono .a-cl-arm{stroke:#000}
+body.mono .a-cl-b1,body.mono .a-cl-b2{fill:#fff;stroke:#000;stroke-width:2.5}
+body.mono .a-cl-b3{fill:#000}
+body.mono .a-cl-rb{fill:#000}
+body.mono .a-cl-rb3{fill:#fff}
+body.mono .lb-fine{color:#000;font:400 11px/1.5 "Space Mono","Apple SD Gothic Neo",sans-serif}

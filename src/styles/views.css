@@ -1,0 +1,17 @@
+/* ===== LOBBY ===== */
+/* =========== VIEWS =========== */
+.view{display:none}
+/* each screen shows itself in its own CSS:  body.v-<name> #<viewId>{display:block} */
+body.v-lobby #lobbyView{display:block}
+[hidden]{display:none !important}
+.s-m{display:none}
+body.mono .s-m{display:inline}
+body.mono .s-d{display:none}
+
+/* toast (shared) */
+.c-toast-layer{position:fixed;top:calc(14px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);z-index:80;display:flex;flex-direction:column;gap:8px;pointer-events:none;align-items:center}
+.c-toast{background:#120a00;color:var(--amber);border:1px solid #6a4a00;font:22px/1 "VT323","Apple SD Gothic Neo",sans-serif;
+  padding:8px 16px;border-radius:6px;box-shadow:0 10px 30px rgba(0,0,0,.6);opacity:0;transform:translateY(-8px);transition:opacity .25s,transform .25s;white-space:nowrap;
+  text-shadow:0 0 6px rgba(255,176,0,.6)}
+.c-toast.show{opacity:1;transform:none}
+body.mono .c-toast{background:#000;color:#fff;border:0;border-radius:2px;text-shadow:none;font:700 13px/1.2 "Space Mono","Apple SD Gothic Neo",sans-serif;letter-spacing:.06em}

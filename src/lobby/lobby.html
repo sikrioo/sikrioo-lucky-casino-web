@@ -1,0 +1,122 @@
+<section class="view lobby" id="lobbyView">
+  <div class="lb-wrap">
+    <header class="sign">
+      <div class="bulbs" id="signBulbsTop"></div>
+      <div class="sign-welcome">Welcome to</div>
+      <h1 class="sign-name">LUCKY STRIP</h1>
+      <div class="sign-sub">★ HOTEL &amp; CASINO ★</div>
+      <div class="sign-meta"><span>casino · nº 1</span><span>est. 1974</span></div>
+      <div class="bulbs" id="signBulbsBot"></div>
+    </header>
+
+    <section class="bank-card" aria-label="보유 자금">
+      <div class="bank-top">
+        <span class="bank-label">YOUR BANKROLL</span>
+        <button class="chip" id="lbAtm" type="button">ATM +1,000</button>
+      </div>
+      <div class="bank-led"><div class="seg" id="lobbySeg"></div></div>
+      <div class="bank-note">슬롯과 블랙잭이 같은 자금을 씁니다</div>
+    </section>
+
+    <h2 class="lb-section"><span>게임 선택</span></h2>
+    <div class="games">
+      <button class="game g-slot" data-go="slot" type="button">
+        <span class="g-no">01</span>
+        <span class="g-art" aria-hidden="true">
+          <svg viewBox="0 0 160 110">
+            <rect class="a-body" x="34" y="6" width="92" height="98" rx="12"/>
+            <rect class="a-top" x="42" y="13" width="76" height="16" rx="5"/>
+            <rect class="a-win" x="42" y="36" width="76" height="38" rx="4"/>
+            <line class="a-div" x1="67.3" y1="36" x2="67.3" y2="74"/><line class="a-div" x1="92.6" y1="36" x2="92.6" y2="74"/>
+            <text class="a-seven" x="54.6" y="66" text-anchor="middle">7</text>
+            <text class="a-seven" x="80" y="66" text-anchor="middle">7</text>
+            <text class="a-seven" x="105.3" y="66" text-anchor="middle">7</text>
+            <rect class="a-btn" x="46" y="82" width="20" height="10" rx="3"/><rect class="a-btn2" x="70" y="82" width="20" height="10" rx="3"/><rect class="a-btn3" x="94" y="82" width="20" height="10" rx="3"/>
+            <line class="a-rod" x1="134" y1="22" x2="134" y2="62"/><circle class="a-ball" cx="134" cy="20" r="7"/>
+            <rect class="a-mount" x="126" y="56" width="10" height="20" rx="3"/>
+          </svg>
+        </span>
+        <span class="g-name">LUCKY 7</span>
+        <span class="g-kind">3릴 · 5라인 슬롯머신</span>
+        <span class="g-meta"><span>최대 300배</span><span>라인당 ×1,000</span></span>
+        <span class="g-play">PLAY ▸</span>
+      </button>
+      <button class="game g-bj" data-go="blackjack" type="button">
+        <span class="g-no">02</span>
+        <span class="g-art" aria-hidden="true">
+          <svg viewBox="0 0 160 110">
+            <ellipse class="a-felt" cx="80" cy="100" rx="78" ry="22"/>
+            <g transform="rotate(-12 64 60)"><rect class="a-card" x="40" y="18" width="48" height="68" rx="5"/>
+              <text class="a-rank" x="47" y="34">A</text><text class="a-suit" x="64" y="64" text-anchor="middle">♠</text></g>
+            <g transform="rotate(10 96 60)"><rect class="a-card" x="72" y="16" width="48" height="68" rx="5"/>
+              <text class="a-rank red" x="79" y="32">K</text><text class="a-suit red s-d" x="96" y="62" text-anchor="middle">♥</text><text class="a-suit red s-m" x="96" y="62" text-anchor="middle">♡</text></g>
+            <circle class="a-chip" cx="132" cy="88" r="12"/><circle class="a-chip-in" cx="132" cy="88" r="7"/>
+          </svg>
+        </span>
+        <span class="g-name">TABLE Nº 7</span>
+        <span class="g-kind">블랙잭 · 6덱 슈</span>
+        <span class="g-meta"><span>블랙잭 3:2</span><span>인슈어런스 2:1</span></span>
+        <span class="g-play">PLAY ▸</span>
+      </button>
+      <button class="game g-tw" data-go="stopwatch" type="button">
+        <span class="g-no">03</span>
+        <span class="g-art" aria-hidden="true">
+          <svg viewBox="0 0 160 110">
+            <rect class="a-tw-btn" x="72" y="2" width="16" height="10" rx="3"/>
+            <rect class="a-tw-crown" x="76" y="10" width="8" height="8"/>
+            <circle class="a-tw-case" cx="80" cy="60" r="44"/>
+            <circle class="a-tw-face" cx="80" cy="60" r="36"/>
+            <rect class="a-tw-lcd" x="54" y="62" width="52" height="16" rx="2"/>
+            <text class="a-tw-digits" x="80" y="75" text-anchor="middle">08.031</text>
+            <line class="a-tw-hand" x1="80" y1="60" x2="98" y2="36"/>
+            <circle class="a-tw-hub" cx="80" cy="60" r="4"/>
+          </svg>
+        </span>
+        <span class="g-name">PERFECT STOP</span>
+        <span class="g-kind">목표 시간에 정확히 멈추기</span>
+        <span class="g-meta"><span>SHOW 최대 ×20</span><span>BLIND 최대 ×30</span></span>
+        <span class="g-play">PLAY ▸</span>
+      </button>
+      <button class="game g-hl" data-go="hilo" type="button">
+        <span class="g-no">04</span>
+        <span class="g-art" aria-hidden="true">
+          <svg viewBox="0 0 160 110">
+            <g transform="rotate(-14 56 56)"><rect class="a-die" x="28" y="28" width="56" height="56" rx="10"/>
+              <circle class="a-pip" cx="42" cy="42" r="5"/><circle class="a-pip" cx="56" cy="56" r="5"/><circle class="a-pip" cx="70" cy="70" r="5"/></g>
+            <g transform="rotate(12 106 60)"><rect class="a-die" x="78" y="32" width="56" height="56" rx="10"/>
+              <circle class="a-pip" cx="92" cy="46" r="5"/><circle class="a-pip" cx="120" cy="46" r="5"/><circle class="a-pip" cx="92" cy="74" r="5"/><circle class="a-pip" cx="120" cy="74" r="5"/></g>
+          </svg>
+        </span>
+        <span class="g-name">HI-LO DICE</span>
+        <span class="g-kind">주사위 2개 · 언더/오버 7</span>
+        <span class="g-meta"><span>LOW·HIGH 1:1</span><span>7 = 4:1</span></span>
+        <span class="g-play">PLAY ▸</span>
+      </button>
+      <button class="game g-cl" data-go="claw" type="button">
+        <span class="g-no">05</span>
+        <span class="g-art" aria-hidden="true">
+          <svg viewBox="0 0 160 110">
+            <line class="a-cl-rail" x1="14" y1="8" x2="146" y2="8"/>
+            <line class="a-cl-cable" x1="79" y1="10" x2="79" y2="33"/>
+            <path class="a-cl-arm" d="M73 41 L61 52 L64 66 L70 69"/>
+            <path class="a-cl-arm" d="M85 41 L97 52 L94 66 L88 69"/>
+            <rect class="a-cl-hub" x="69" y="31" width="20" height="11" rx="3"/>
+            <rect class="a-cl-b1" x="18" y="76" width="34" height="28" rx="3"/><rect class="a-cl-rb" x="32" y="76" width="6" height="28"/>
+            <rect class="a-cl-b2" x="58" y="62" width="42" height="42" rx="3"/><rect class="a-cl-rb" x="76" y="62" width="6" height="42"/><rect class="a-cl-rb" x="58" y="80" width="42" height="6"/>
+            <rect class="a-cl-b3" x="106" y="78" width="38" height="26" rx="3"/><rect class="a-cl-rb3" x="122" y="78" width="6" height="26"/>
+          </svg>
+        </span>
+        <span class="g-name">LUCKY CLAW</span>
+        <span class="g-kind">크레인으로 뽑고 · 탭해서 개봉</span>
+        <span class="g-meta"><span>상자 4종</span><span>최대 ×50</span></span>
+        <span class="g-play">PLAY ▸</span>
+      </button>
+    </div>
+
+    <footer class="lb-foot">
+      <button class="chip" id="lbTheme" type="button">’74 모노</button>
+      <button class="chip" id="lbSound" type="button">소리 켬</button>
+    </footer>
+    <p class="lb-fine">가상 칩으로 즐기는 게임입니다 · 실제 돈은 오가지 않아요</p>
+  </div>
+</section>

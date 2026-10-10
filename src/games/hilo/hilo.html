@@ -1,0 +1,46 @@
+<div class="view gview" id="hlView">
+  <div class="gwrap">
+    <header class="g-head">
+      <button class="chip g-back" data-back type="button">← 로비</button>
+      <div class="g-title"><h1>HI-LO DICE</h1><span class="g-sub" data-sub="Under · Seven · Over|2 dice · under/over 7">Under · Seven · Over</span></div>
+      <div class="g-bank"><span class="g-bank-l">BANKROLL</span><div class="g-led"><div class="seg" id="hlBank"></div></div></div>
+    </header>
+
+    <section class="hl-table">
+      <div class="hl-stage">
+        <div class="hl-diebox"><div class="die" id="die1"></div></div>
+        <div class="hl-sum"><span class="hl-sum-l">TOTAL</span><div class="hl-sumled"><div class="seg" id="hlSum"></div></div></div>
+        <div class="hl-diebox"><div class="die" id="die2"></div></div>
+      </div>
+      <div class="hl-msg" id="hlMsg" aria-live="polite">칩을 고르고 LOW · 7 · HIGH에 거세요</div>
+      <div class="hl-board">
+        <button class="hl-spot" data-spot="low" type="button">
+          <span class="hl-name">UNDER 7</span><span class="hl-range">2 – 6</span><span class="hl-odds">1 : 1</span>
+          <span class="hl-stack"></span><span class="hl-amt"></span>
+        </button>
+        <button class="hl-spot hl-seven" data-spot="seven" type="button">
+          <span class="hl-name">SEVEN</span><span class="hl-range">7</span><span class="hl-odds">4 : 1</span>
+          <span class="hl-stack"></span><span class="hl-amt"></span>
+        </button>
+        <button class="hl-spot" data-spot="high" type="button">
+          <span class="hl-name">OVER 7</span><span class="hl-range">8 – 12</span><span class="hl-odds">1 : 1</span>
+          <span class="hl-stack"></span><span class="hl-amt"></span>
+        </button>
+      </div>
+      <div class="g-rack hl-rack"><div class="g-tray" id="hlChips"></div></div>
+    </section>
+
+    <div class="hl-actions">
+      <button class="bbtn ghost" id="hlClear" type="button">지우기</button>
+      <button class="bbtn" id="hlRebet" type="button">같은 배팅</button>
+      <button class="bbtn primary" id="hlRoll" type="button">ROLL</button>
+    </div>
+
+    <section class="g-panel">
+      <h2 class="g-h2">LAST ROLLS</h2>
+      <div class="hl-hist" id="hlHist"><span class="g-empty">아직 굴리지 않았어요</span></div>
+      <div class="hl-stats" id="hlStats"></div>
+    </section>
+    <p class="g-note hl-rule">전통 언더/오버 7 규칙 · 주사위 2개의 합으로 판정 · 여러 칸에 동시에 걸 수 있어요</p>
+  </div>
+</div>

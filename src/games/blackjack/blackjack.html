@@ -1,0 +1,100 @@
+<div class="view bj" id="bjView">
+<div id="bjApp">
+  <header class="plaque">
+    <button class="chip bj-back" id="bjBack" type="button">← 로비</button>
+    <div class="plaque-inner">
+      <span class="plaque-eyebrow">인생을 걸어라</span>
+      <h1 class="plaque-title">TABLE Nº 7</h1>
+      <span class="plaque-sub" id="bjSub">Blackjack</span>
+    </div>
+    <div class="hud">
+      <div class="hud-item" id="bjLedWrap">
+        <span class="hud-label">BANKROLL</span>
+        <div class="hud-led"><div class="seg" id="bjSeg"></div></div>
+      </div>
+      <button class="drawer-tab" id="drawerTab" aria-label="통계 및 설정 열기" type="button">☰</button>
+    </div>
+  </header>
+
+  <main class="table-wrap">
+    <div class="table-felt">
+      <svg class="felt-print" viewBox="0 0 400 90" aria-hidden="true">
+        <path id="bjArc1" d="M20 14 Q200 82 380 14" fill="none"/>
+        <path id="bjArc2" d="M52 34 Q200 92 348 34" fill="none"/>
+        <text class="fp-1"><textPath href="#bjArc1" startOffset="50%" text-anchor="middle">BLACKJACK PAYS 3 TO 2</textPath></text>
+        <text class="fp-2"><textPath href="#bjArc2" startOffset="50%" text-anchor="middle">DEALER STANDS ON ALL 17 · INSURANCE PAYS 2 TO 1</textPath></text>
+      </svg>
+      <div class="zawa-layer" id="zawaLayer" aria-hidden="true"></div>
+      <div class="shoe" id="shoe" aria-hidden="true">
+        <div class="shoe-body"></div>
+        <div class="shoe-gauge"><div class="shoe-gauge-fill" id="shoeGauge"></div><div class="shoe-cut-line"></div></div>
+      </div>
+
+      <section class="seat dealer-seat">
+        <div class="seat-label">딜러 <span class="hand-total" id="dealerTotal"></span></div>
+        <div class="hand" id="dealerHand"></div>
+      </section>
+
+      <section class="player-seat" id="playerSeatArea"></section>
+
+      <div class="discard" aria-hidden="true"><div class="discard-fill" id="discardFill"></div></div>
+      <div class="bet-zone">
+        <div class="bet-circle" id="betCircle">
+          <div class="chip-stack" id="betChipStack"></div>
+          <span class="bet-amount" id="betAmount">0</span>
+        </div>
+      </div>
+      <div class="chip-rack">
+        <div class="chip-tray" id="chipTray"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="controls">
+    <div class="bet-actions" id="betActions">
+      <button class="bbtn ghost" id="btnClear" type="button">지우기</button>
+      <button class="bbtn" id="btnRebet" type="button">같은 배팅</button>
+      <button class="bbtn primary" id="btnDeal" type="button">딜</button>
+    </div>
+    <div class="play-actions" id="playActions" hidden>
+      <button class="bbtn act-hit" id="btnHit" type="button">히트</button>
+      <button class="bbtn act-stand" id="btnStand" type="button">스탠드</button>
+      <button class="bbtn act-double" id="btnDouble" type="button">더블</button>
+      <button class="bbtn act-split" id="btnSplit" type="button">스플릿</button>
+      <button class="bbtn act-sur" id="btnSurrender" type="button">서렌더</button>
+    </div>
+    <div class="advisor" id="advisor" hidden></div>
+  </footer>
+</div>
+
+<div class="insurance-prompt" id="insurancePrompt" hidden></div>
+
+<div class="bscrim" id="bjScrim" hidden></div>
+<aside class="drawer" id="drawer">
+  <div class="drawer-header">
+    <h2>설정 &amp; 통계</h2>
+    <button class="bbtn ghost" id="drawerClose" type="button">닫기</button>
+  </div>
+  <div class="drawer-section">
+    <label class="toggle"><input type="checkbox" id="toggleSound" checked><span>사운드 효과</span></label>
+    <label class="toggle"><input type="checkbox" id="toggleAdvisor"><span>전략 어드바이저 힌트</span></label>
+    <label class="toggle"><input type="checkbox" id="toggleMono"><span>’74 모노 테마</span></label>
+  </div>
+  <div class="drawer-section stats-grid" id="statsGrid"></div>
+  <div class="drawer-section">
+    <button class="bbtn ghost" id="btnResetStats" type="button">통계 초기화</button>
+    <button class="bbtn ghost" id="btnResetBankroll" type="button">뱅크롤 리셋 ($1,000)</button>
+  </div>
+  <div class="drawer-section rules">
+    <h3>테이블 규칙</h3>
+    <ul>
+      <li>6덱 슈, 딜러는 소프트 17에서 스탠드</li>
+      <li>블랙잭 3:2 배당, 딜러 에이스 시 인슈어런스 2:1</li>
+      <li>더블다운은 최초 두 장에서 언제든 가능</li>
+      <li>동일 랭크 페어 스플릿 (최대 4핸드), 스플릿 후 더블 가능</li>
+      <li>에이스 스플릿 시 각 핸드 한 장만 받고 종료</li>
+      <li>레이트 서렌더: 첫 두 장, 스플릿 전에만 가능</li>
+    </ul>
+  </div>
+</aside>
+</div>

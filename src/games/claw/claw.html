@@ -1,0 +1,62 @@
+<div class="view gview" id="clView">
+  <div class="gwrap">
+    <header class="g-head">
+      <button class="chip g-back" data-back type="button">← 로비</button>
+      <div class="g-title"><h1>LUCKY CLAW</h1><span class="g-sub" data-sub="Grab · Open · Win|claw nº 5 · gacha">Grab · Open · Win</span></div>
+      <div class="g-bank"><span class="g-bank-l">BANKROLL</span><div class="g-led"><div class="seg" id="clBank"></div></div></div>
+    </header>
+
+    <section class="cl-cab">
+      <div class="bulbs" id="clBulbs"></div>
+      <div class="cl-glass"><canvas id="clCanvas" aria-label="크레인 게임 화면"></canvas></div>
+      <div class="cl-info">
+        <div class="cl-led"><span>TIME</span><div class="seg" id="clTime"></div></div>
+        <div class="cl-led"><span>PRICE</span><div class="seg" id="clPrice"></div></div>
+        <div class="cl-msg" id="clMsg" aria-live="polite">가격을 고르고 PLAY</div>
+      </div>
+      <div class="cl-deck">
+        <button class="cl-arrow" id="clL" type="button" aria-label="왼쪽으로">◀</button>
+        <button class="cl-arrow" id="clR" type="button" aria-label="오른쪽으로">▶</button>
+        <button class="cl-shake" id="clShake" type="button" aria-label="기계 흔들기"><span>SHAKE</span><small id="clShakeS">$50</small></button>
+        <button class="cl-go" id="clGo" type="button"><span id="clGoL">PLAY</span><small id="clGoS">$100</small></button>
+      </div>
+    </section>
+
+    <section class="g-panel">
+      <h2 class="g-h2">CLAW SIZE</h2>
+      <div class="cl-claws" id="clClaws" role="radiogroup" aria-label="집게 크기"></div>
+      <p class="g-note">작은 집게일수록 덜 벌어지고 손가락이 짧아 큰 상품은 못 감싸요 · 플레이 사이에만 교체</p>
+    </section>
+
+    <section class="g-panel">
+      <h2 class="g-h2">PRICE PER PLAY</h2>
+      <div class="g-rack"><div class="g-tray" id="clChips"></div></div>
+    </section>
+
+    <section class="g-panel">
+      <h2 class="g-h2">PRIZE BOXES</h2>
+      <div class="cl-rows" id="clRows"></div>
+      <p class="g-note">상금 = 플레이 가격 × 배수 · 집게 힘은 판마다 달라요 · 흔들림이 멈춘 뒤 내리세요 · 대왕 상자는 밀어서 떨어뜨려야 해요</p>
+    </section>
+
+    <section class="g-panel">
+      <h2 class="g-h2">OPENED</h2>
+      <div class="cl-hist" id="clHist"><span class="g-empty">아직 연 상자가 없어요</span></div>
+    </section>
+  </div>
+
+  <div class="gacha" id="gacha" hidden>
+    <div class="gacha-in">
+      <div class="gacha-tier" id="gTier">LARGE BOX</div>
+      <div class="gacha-stage" id="gStage" role="button" tabindex="0" aria-label="상자 탭해서 열기">
+        <div class="gacha-glow"></div>
+        <div class="gacha-boxwrap" id="gBoxWrap"></div>
+        <div class="gacha-prize" id="gPrize"></div>
+        <div class="gacha-fx" id="gFx"></div>
+      </div>
+      <div class="gacha-dots" id="gDots"></div>
+      <div class="gacha-hint" id="gHint">TAP!</div>
+      <button class="gacha-btn" id="gCollect" type="button" hidden>받기</button>
+    </div>
+  </div>
+</div>

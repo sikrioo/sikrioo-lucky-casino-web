@@ -1,0 +1,159 @@
+body.v-claw #clView{display:block}
+/* ===== CLAW ===== */
+/* =========== LUCKY CLAW =========== */
+#clView .cl-cab{position:relative;border-radius:22px;padding:10px 10px 12px;
+  background:linear-gradient(90deg,rgba(0,0,0,.3),transparent 8%,transparent 92%,rgba(0,0,0,.3)),linear-gradient(180deg,#ff4fb0,#c41a7c 45%,#6a0a40);
+  box-shadow:inset 0 0 0 3px #e9edf2,inset 0 0 0 5px #7d8794,inset 0 0 0 7px #f4f7fa,0 24px 50px rgba(0,0,0,.6),0 0 34px rgba(255,79,176,.35)}
+#clView .bulbs{padding:2px 10px 8px}
+.cl-glass{position:relative;border-radius:12px;overflow:hidden;background:#14051f;box-shadow:0 0 0 2px #000,0 0 0 5px #e9edf2,0 0 0 6px #5b6572}
+.cl-glass canvas{display:block;width:100%;aspect-ratio:360/430;touch-action:manipulation}
+.cl-info{display:grid;grid-template-columns:1fr 1.5fr;gap:8px;margin-top:12px}
+.cl-led{display:flex;align-items:center;gap:8px;background:#000;border-radius:8px;padding:5px 8px 6px;box-shadow:inset 0 0 0 2px #2a2a2a,inset 0 0 0 3px #555}
+.cl-led > span{font:15px/1 "VT323",monospace;color:var(--gold);letter-spacing:.1em}
+body .cl-led .seg,body .cl-led .drum{flex:1;max-width:calc(var(--n)*20px);margin-left:auto}
+.cl-msg{grid-column:1/-1;height:32px;display:flex;align-items:center;justify-content:center;padding:0 8px;overflow:hidden;white-space:nowrap;
+  background:#120a00;border-radius:6px;box-shadow:inset 0 0 0 2px #3a2400;
+  font:24px/1 "VT323","Apple SD Gothic Neo",sans-serif;color:var(--amber);text-shadow:0 0 6px rgba(255,176,0,.7)}
+.cl-deck{display:grid;grid-template-columns:1fr 1fr 1fr 1.35fr;gap:10px;align-items:center;margin-top:12px;padding:12px 10px 14px;border-radius:10px;
+  background:linear-gradient(180deg,#d6dce3,#8f99a6 60%,#6a7380);box-shadow:inset 0 2px 0 #fff,inset 0 -3px 0 #4a525c}
+.cl-arrow,.cl-go,.cl-shake{appearance:none;border:0;cursor:pointer;color:#fff;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;
+  background:radial-gradient(ellipse at 50% 25%,var(--hi),var(--c) 60%,var(--lo));
+  box-shadow:0 6px 0 var(--lo),0 8px 10px rgba(0,0,0,.45),inset 0 2px 1px rgba(255,255,255,.5);text-shadow:0 2px 0 rgba(0,0,0,.35);
+  transition:transform .05s,box-shadow .05s,filter .2s}
+.cl-arrow{--c:#2a6cf0;--hi:#a9c8ff;--lo:#0f347a;height:62px;border-radius:14px;font-size:24px}
+.cl-go{--c:#18b84a;--hi:#a8ffbf;--lo:#0b5f24;height:70px;border-radius:36px;font:400 21px/1 "Bungee",Impact,sans-serif}
+.cl-go.drop{--c:#e0182b;--hi:#ff8a8a;--lo:#7a0610}
+.cl-shake{--c:#ff8a00;--hi:#ffd29a;--lo:#8a3c00;height:62px;border-radius:14px;font:400 13px/1 "Bungee",Impact,sans-serif;padding:0 2px}
+.cl-shake small{display:block;font:15px/1 "VT323",monospace;margin-top:3px;opacity:.9}
+.cl-glass.jolt{animation:jolt .55s cubic-bezier(.36,.07,.19,.97)}
+@keyframes jolt{10%{transform:translate(-5px,2px) rotate(-.6deg)}25%{transform:translate(6px,-2px) rotate(.6deg)}40%{transform:translate(-4px,1px)}55%{transform:translate(4px,-1px)}70%{transform:translate(-2px,0)}85%{transform:translate(1px,0)}}
+@media (max-width:400px){ .cl-shake{font-size:11px} .cl-deck{gap:7px;padding:10px 8px 12px} }
+.cl-go small{display:block;font:16px/1 "VT323",monospace;margin-top:3px;opacity:.9}
+.cl-arrow.on,.cl-arrow:active:not(:disabled),.cl-go:active:not(:disabled),.cl-shake:active:not(:disabled){transform:translateY(5px);box-shadow:0 1px 0 var(--lo),0 2px 4px rgba(0,0,0,.4),inset 0 2px 1px rgba(255,255,255,.4)}
+.cl-arrow:disabled,.cl-go:disabled,.cl-shake:disabled{filter:grayscale(.75) brightness(.7);cursor:default}
+.cl-arrow:focus-visible,.cl-go:focus-visible{outline:3px solid #5ef2e6;outline-offset:3px}
+.cl-rows{display:grid;gap:6px}
+.cl-claws{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.cl-claw{appearance:none;border:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:5px;padding:9px 4px 10px;border-radius:10px;background:rgba(0,0,0,.35);color:#fff;box-shadow:inset 0 0 0 2px rgba(255,255,255,.12);transition:box-shadow .15s,background .15s}
+.cl-claw svg{width:52px;height:44px;display:block;overflow:visible}
+.cl-claw .n{font:400 13px/1 "Bungee",Impact,sans-serif;letter-spacing:.02em}
+.cl-claw .b{font:12px/1.2 "Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;color:var(--amber);white-space:nowrap}
+.cl-claw[aria-checked="true"]{background:rgba(255,212,0,.13);box-shadow:inset 0 0 0 2px var(--gold),0 0 16px rgba(255,212,0,.3)}
+.cl-claw:disabled{opacity:.45;cursor:default}
+.cl-claw:focus-visible{outline:3px solid #5ef2e6;outline-offset:2px}
+body.mono .cl-claw{background:#fff;color:#000;border-radius:2px;box-shadow:inset 0 0 0 2px #000}
+body.mono .cl-claw .n{font:700 11px/1 "Space Mono",monospace;letter-spacing:.1em}
+body.mono .cl-claw .b{color:#000;font:400 11px/1.2 "Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif}
+body.mono .cl-claw[aria-checked="true"]{background:#000;color:#fff}
+body.mono .cl-claw[aria-checked="true"] .b{color:#fff}
+.cl-ics{grid-area:i;display:flex;align-items:flex-end;gap:3px;margin-top:4px}
+.cl-ics svg{width:30px !important;height:26px !important}
+.cl-row .cl-t{grid-area:t}
+.cl-row .p{grid-area:p;align-self:center}
+.cl-row{grid-template-areas:"t p" "i p";display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;padding:7px 10px;border-radius:8px;background:rgba(0,0,0,.35)}
+.cl-row svg{width:44px;height:38px;display:block;overflow:visible}
+.cl-t{display:flex;flex-direction:column;gap:3px;min-width:0}
+.cl-t .n{font:400 15px/1 "Bungee",Impact,sans-serif;color:#fff}
+.cl-t .g{font:12px/1.3 "Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;color:var(--muted)}
+.cl-row .p{font:19px/1.15 "VT323",monospace;color:var(--amber);text-align:right;white-space:nowrap}
+.cl-hist{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+.cl-h{font:18px/1 "VT323",monospace;padding:4px 8px 3px;border-radius:4px;background:#000;color:var(--rc);box-shadow:inset 0 0 0 1.5px var(--rc)}
+
+/* gacha overlay */
+.gacha{position:fixed;inset:0;z-index:70;display:flex;align-items:center;justify-content:center;padding:20px;
+  background:radial-gradient(ellipse at 50% 45%,rgba(59,26,90,.94),rgba(6,2,10,.97) 70%);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.gacha-in{width:min(100%,360px);display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center}
+.gacha-tier{font:400 22px/1 "Bungee",Impact,sans-serif;color:#fff;text-shadow:0 0 8px var(--tc,#ff6bd5),0 0 20px var(--tc,#ff6bd5)}
+.gacha-stage{--go:0;--gc:#fff8c0;position:relative;width:min(76vw,300px);aspect-ratio:1;cursor:pointer;touch-action:manipulation;user-select:none;-webkit-user-select:none;outline:none}
+.gacha-glow{position:absolute;inset:-14%;border-radius:50%;background:radial-gradient(circle,var(--gc) 0,transparent 60%);opacity:var(--go);transition:opacity .25s,background .4s;pointer-events:none}
+.gacha-boxwrap{position:absolute;inset:0}
+.gacha-boxwrap svg{width:100%;height:100%;overflow:visible;display:block}
+.gacha-stage.shake .gacha-boxwrap{animation:gShake .3s ease}
+@keyframes gShake{15%{transform:rotate(-7deg) translate(-5px,2px)}35%{transform:rotate(6deg) translate(5px,-2px)}55%{transform:rotate(-4deg)}75%{transform:rotate(3deg)}}
+.gacha-boxwrap .crack{opacity:0;stroke:var(--cc,#fff8c0);transition:opacity .12s,stroke .3s;filter:drop-shadow(0 0 4px var(--cc,#fff8c0))}
+.gacha-boxwrap .crack.on{opacity:1}
+.gacha-boxwrap .lid{transform-box:fill-box;transform-origin:50% 100%;transition:transform .75s cubic-bezier(.2,.8,.3,1),opacity .75s}
+.gacha-stage.open .crack,.gacha-stage.open .gshadow{opacity:0 !important;transition:opacity .2s}
+.gacha-stage.open .lid{transform:translate(40px,-150px) rotate(38deg);opacity:0}
+.gacha-boxwrap .body{transform-box:fill-box;transform-origin:50% 60%}
+.gacha-stage.open .body{animation:gBody .55s ease-in forwards}
+@keyframes gBody{40%{transform:scale(1.12)}100%{transform:scale(.4) translateY(40px);opacity:0}}
+.gacha-prize{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;opacity:0;transform:scale(.3);pointer-events:none}
+.gacha-prize.show{animation:gPrize .6s cubic-bezier(.2,.9,.3,1.4) forwards}
+@keyframes gPrize{to{opacity:1;transform:none}}
+.gem{width:44%;overflow:visible;filter:drop-shadow(0 0 16px var(--rc))}
+.gem .g-o{fill:var(--rc)}
+.gem .g-t{fill:rgba(255,255,255,.5)}
+.gem .g-l{fill:none;stroke:rgba(255,255,255,.65);stroke-width:2}
+.gem .rays{display:none;stroke:var(--rc);stroke-width:3;stroke-linecap:round;transform-origin:50px 50px;animation:rays 4s linear infinite}
+.gem.r3 .rays{display:block}
+@keyframes rays{to{transform:rotate(360deg)}}
+.gp-r{font:400 24px/1 "Bungee",Impact,sans-serif;color:var(--rc);text-shadow:0 0 10px var(--rc)}
+.gp-m{font:400 44px/1 "Bungee",Impact,sans-serif;color:#fff;text-shadow:0 3px 0 rgba(0,0,0,.4)}
+.gp-a{font:28px/1 "VT323",monospace;color:var(--amber);text-shadow:0 0 6px rgba(255,176,0,.6)}
+.gacha-fx{position:absolute;left:50%;top:50%;width:0;height:0;pointer-events:none}
+.conf{position:absolute;left:-4px;top:-6px;width:8px;height:12px;border-radius:2px;animation:conf 1.2s cubic-bezier(.15,.7,.35,1) forwards}
+@keyframes conf{to{transform:translate(var(--dx),var(--dy)) rotate(var(--r));opacity:0}}
+.gacha-dots{display:flex;gap:9px}
+.gacha-dots i{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,.15);box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.4)}
+.gacha-dots i.on{background:#ffd400;box-shadow:0 0 10px #ffd400}
+.gacha-hint{font:28px/1 "VT323",monospace;color:#5ef2e6;letter-spacing:.24em;text-shadow:0 0 8px #23d5c8;animation:gHint 1s ease-in-out infinite}
+@keyframes gHint{50%{opacity:.4}}
+.gacha-btn{appearance:none;border:0;cursor:pointer;min-width:160px;padding:14px 20px 12px;border-radius:12px;font:400 20px/1 "Bungee",Impact,sans-serif;color:#fff;
+  --c:#18b84a;--hi:#a8ffbf;--lo:#0b5f24;background:radial-gradient(ellipse at 50% 20%,var(--hi),var(--c) 60%,var(--lo));
+  box-shadow:0 6px 0 var(--lo),0 8px 12px rgba(0,0,0,.5),inset 0 2px 1px rgba(255,255,255,.4);text-shadow:0 2px 0 rgba(0,0,0,.35)}
+.gacha-btn:active{transform:translateY(5px);box-shadow:0 1px 0 var(--lo)}
+.gacha-btn:focus-visible,.gacha-stage:focus-visible{outline:3px solid #5ef2e6;outline-offset:6px}
+
+@media (prefers-reduced-motion: reduce){
+  .gacha-stage.shake .gacha-boxwrap,.gacha-hint,.gem .rays,.conf{animation:none}
+}
+
+/* ---- claw · mono ---- */
+body.mono #clView .cl-cab{background:#fff;border-radius:6px;box-shadow:0 0 0 3px #000,10px 10px 0 3px #000}
+body.mono .cl-glass{background:#fff;border-radius:2px;box-shadow:0 0 0 3px #000}
+body.mono .cl-led{border-radius:2px;box-shadow:none}
+body.mono .cl-led > span{color:#fff;font:400 9px/1 "Space Mono",monospace;letter-spacing:.2em}
+body.mono .cl-led .drum i{font-size:15px}
+body.mono .cl-msg{background:#fff;color:#000;text-shadow:none;border-radius:0;box-shadow:inset 0 0 0 2px #000;
+  font:700 12px/1 "Space Mono","Apple SD Gothic Neo",sans-serif;letter-spacing:.08em;text-transform:uppercase}
+body.mono .cl-deck{background:#fff;box-shadow:none;padding:6px 0 10px}
+body.mono .cl-arrow,body.mono .cl-go,body.mono .cl-shake{background:#fff;color:#000;text-shadow:none;border:2.5px solid #000;box-shadow:0 5px 0 #000}
+body.mono .cl-arrow{border-radius:4px;font-size:20px}
+body.mono .cl-go{background:#000;color:#fff;border-radius:36px;font:700 17px/1 "Space Mono",monospace;letter-spacing:.1em}
+body.mono .cl-shake{border-radius:4px;border-style:dashed;font:700 11px/1 "Space Mono",monospace;letter-spacing:.06em}
+body.mono .cl-shake small{font:400 10px/1 "Space Mono",monospace;margin-top:4px}
+body.mono .cl-go.drop{background:#fff;color:#000;box-shadow:inset 0 0 0 3px #000,0 5px 0 #000}
+body.mono .cl-go small{font:400 11px/1 "Space Mono",monospace;margin-top:5px}
+body.mono .cl-arrow.on,body.mono .cl-arrow:active:not(:disabled),body.mono .cl-go:active:not(:disabled),body.mono .cl-shake:active:not(:disabled){transform:translateY(4px);box-shadow:0 1px 0 #000}
+body.mono .cl-arrow:disabled,body.mono .cl-go:disabled,body.mono .cl-shake:disabled{filter:none;opacity:.3}
+body.mono .cl-row{background:#fff;border-radius:0;border-bottom:1.5px solid #000;padding:8px 2px}
+body.mono .cl-t .n{color:#000;font:400 14px/1 "Archivo Black",Arial,sans-serif;text-transform:lowercase;letter-spacing:-.02em}
+body.mono .cl-t .g{color:#000;font:400 10px/1.4 "Space Mono","Apple SD Gothic Neo",sans-serif}
+body.mono .cl-row .p{color:#000;font:700 12px/1.3 "Space Mono",monospace}
+body.mono .cl-h{background:#fff;color:#000;border-radius:0;box-shadow:inset 0 0 0 1.5px #000;font:700 11px/1 "Space Mono",monospace;padding:5px 7px}
+body.mono .cl-h.r2,body.mono .cl-h.r3{background:#000;color:#fff}
+body.mono .gacha{background:rgba(255,255,255,.95)}
+body.mono .gacha-tier{color:#000;text-shadow:none;font:400 26px/1 "Archivo Black",Arial,sans-serif;text-transform:lowercase;letter-spacing:-.03em}
+body.mono .gacha-glow{display:none}
+body.mono .gacha-boxwrap .crack{filter:none}
+body.mono .gacha-dots i{background:#fff;box-shadow:inset 0 0 0 2px #000;border-radius:0}
+body.mono .gacha-dots i.on{background:#000;box-shadow:none}
+body.mono .gacha-hint{color:#000;text-shadow:none;font:700 13px/1 "Space Mono",monospace;letter-spacing:.3em;animation:gHintM 1s steps(2) infinite}
+@keyframes gHintM{50%{opacity:0}}
+body.mono .gem{filter:none}
+body.mono .gem .g-o{fill:#fff;stroke:#000;stroke-width:4;stroke-linejoin:round}
+body.mono .gem .g-t{fill:#fff;stroke:#000;stroke-width:2.5}
+body.mono .gem .g-l{stroke:#000;stroke-width:2.5}
+body.mono .gem.r1 .g-t{fill:#000}
+body.mono .gem.r2 .g-o,body.mono .gem.r3 .g-o{fill:#000}
+body.mono .gem.r2 .g-t,body.mono .gem.r3 .g-t{fill:#000;stroke:#fff}
+body.mono .gem.r2 .g-l,body.mono .gem.r3 .g-l{stroke:#fff}
+body.mono .gem .rays{stroke:#000}
+body.mono .gp-r{color:#000;text-shadow:none;font:700 14px/1 "Space Mono",monospace;letter-spacing:.3em}
+body.mono .gp-m{color:#000;text-shadow:none;font:400 46px/1 "Archivo Black",Arial,sans-serif}
+body.mono .gp-a{color:#000;text-shadow:none;font:700 18px/1 "Space Mono",monospace}
+body.mono .conf{border-radius:0;border:1.5px solid #000}
+body.mono .gacha-btn{background:#000;color:#fff;text-shadow:none;border-radius:4px;box-shadow:0 0 0 2.5px #000,0 6px 0 2.5px #000;font:700 15px/1 "Space Mono","Apple SD Gothic Neo",sans-serif;letter-spacing:.1em}
+body.mono .gacha-btn:active{transform:translateY(5px);box-shadow:0 0 0 2.5px #000,0 1px 0 2.5px #000}
+body.mono .gacha-btn:focus-visible,body.mono .gacha-stage:focus-visible,body.mono .cl-arrow:focus-visible,body.mono .cl-go:focus-visible{outline-color:#000}

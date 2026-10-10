@@ -1,0 +1,19 @@
+{
+  "name": "lucky-strip-casino",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "LUCKY STRIP — a browser casino (slot, blackjack, perfect stop, hi-lo, lucky claw) built as a single HTML file",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "matter-js": "0.20.0"
+  },
+  "devDependencies": {
+    "vite": "^5.4.21",
+    "vite-plugin-singlefile": "^2.3.3"
+  }
+}

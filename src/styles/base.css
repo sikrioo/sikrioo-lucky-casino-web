@@ -1,0 +1,35 @@
+:root{
+  --carpet-a:#1b0b2a; --carpet-b:#2a0f3d; --carpet-c:#0f6b6b; --carpet-d:#c2185b;
+  --cab-red:#b3121f; --cab-dark:#5c0710; --gold:#e8b84a; --gold-hi:#fff1b8;
+  --reel:#f7efd8; --led:#ff3b2f; --led-off:#3a0d0c; --amber:#ffb000;
+  --ink:#f4e9d0; --muted:#bfaecc;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){ --carpet-a:#3a1450; --carpet-b:#4b1b66; --carpet-c:#138a8a; --carpet-d:#e0407a; }
+}
+:root[data-theme="light"]{ --carpet-a:#3a1450; --carpet-b:#4b1b66; --carpet-c:#138a8a; --carpet-d:#e0407a; }
+:root[data-theme="dark"]{ --carpet-a:#1b0b2a; --carpet-b:#2a0f3d; --carpet-c:#0f6b6b; --carpet-d:#c2185b; }
+*,*::before,*::after{box-sizing:border-box}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{
+  margin:0;min-height:100%;color:var(--ink);
+  font-family:"VT323","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  background-color:var(--carpet-a);
+  background-image:
+    radial-gradient(circle at 25% 25%, var(--carpet-d) 0 6%, transparent 7%),
+    radial-gradient(circle at 75% 75%, var(--carpet-c) 0 6%, transparent 7%),
+    conic-gradient(from 45deg at 50% 50%, var(--carpet-b) 0 25%, var(--carpet-a) 0 50%, var(--carpet-b) 0 75%, var(--carpet-a) 0);
+  background-size:56px 56px,56px 56px,28px 28px;
+  -webkit-tap-highlight-color:transparent;
+  overflow-x:hidden;
+}
+body::before{ /* casino haze */
+  content:"";position:fixed;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse at 50% 30%, rgba(255,190,90,.18), transparent 60%),
+             radial-gradient(ellipse at 50% 110%, rgba(0,0,0,.7), transparent 60%);
+}
+.stage{position:relative;display:flex;justify-content:center;padding:18px 44px 28px 12px;min-height:100%}
+.machine{position:relative;width:min(100%,430px)}
