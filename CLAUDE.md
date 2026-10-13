@@ -1,6 +1,6 @@
 # LUCKY STRIP — notes for Claude
 
-Browser casino (lobby + slot, blackjack, perfect stop, hi-lo dice, lucky claw). Vanilla JS + CSS, bundled by Vite
+Browser casino (lobby + slot, blackjack, perfect stop, hi-lo dice, lucky claw, lucky plinko). Vanilla JS + CSS, bundled by Vite
 into ONE self-contained `dist/index.html` (vite-plugin-singlefile) that is published as a claude.ai artifact.
 The owner talks in Korean; reply in informal, direct Korean.
 
@@ -25,6 +25,13 @@ The owner talks in Korean; reply in informal, direct Korean.
 - Balance with the headless simulator in the browser console: `__claw.simulate(n, { pick: 'smart' })`.
   Results are noisy — use ≥3,000 plays per configuration and many short independent runs (fresh piles).
 - `config.js` = static data, `art.js` = pure SVG builders; everything stateful is in `claw.js`.
+
+## LUCKY PLINKO
+- Outcome = one fair coin per row (`Casino.rnd(2)`), decided at drop; the flight is a scripted hop animation.
+  Never hand the outcome to a physics engine — the binomial odds are what make the RTP exact.
+- Tables live in `config.js` as half-rows (edge → centre), mirrored; keep every table's `rtpOf` ≈ 0.97.
+- Bank is whole dollars: fractional winnings accumulate in `frac` and are paid when they reach $1.
+- Shared chip styles apply to any `.gview`; new games get them for free.
 
 ## Verifying changes
 Build, then drive `dist/index.html` with Playwright (Chromium is at /opt/pw-browsers in Claude sessions):

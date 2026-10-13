@@ -1,0 +1,40 @@
+<div class="view gview" id="pkView">
+  <div class="gwrap">
+    <header class="g-head">
+      <button class="chip g-back" data-back type="button">← 로비</button>
+      <div class="g-title"><h1>LUCKY PLINKO</h1><span class="g-sub" data-sub="Drop · Bounce · Win|pegs nº 6 · 50:50">Drop · Bounce · Win</span></div>
+      <div class="g-bank"><span class="g-bank-l">BANKROLL</span><div class="g-led"><div class="seg" id="pkBank"></div></div></div>
+    </header>
+
+    <section class="pk-cab">
+      <div class="pk-glass"><canvas id="pkCanvas" aria-label="플링코 보드"></canvas></div>
+      <div class="pk-msg" id="pkMsg" aria-live="polite">줄 수와 위험도를 고르고 DROP</div>
+      <div class="pk-opts">
+        <div class="pk-seg" id="pkRows" role="radiogroup" aria-label="줄 수">
+          <span class="pk-seg-l">ROWS</span>
+          <button type="button" role="radio" data-rows="8">8</button>
+          <button type="button" role="radio" data-rows="12">12</button>
+          <button type="button" role="radio" data-rows="16">16</button>
+        </div>
+        <div class="pk-seg" id="pkRisk" role="radiogroup" aria-label="위험도">
+          <span class="pk-seg-l">RISK</span>
+          <button type="button" role="radio" data-risk="low">LOW</button>
+          <button type="button" role="radio" data-risk="mid">MID</button>
+          <button type="button" role="radio" data-risk="high">HIGH</button>
+        </div>
+      </div>
+      <div class="g-rack"><div class="g-tray" id="pkChips"></div></div>
+      <div class="pk-actions">
+        <button class="pk-btn pk-auto" id="pkAuto" type="button"><span id="pkAutoL">AUTO ×10</span><small id="pkAutoS">$250</small></button>
+        <button class="pk-btn pk-drop" id="pkDrop" type="button"><span>DROP</span><small id="pkDropS">$25</small></button>
+      </div>
+    </section>
+
+    <section class="g-panel">
+      <h2 class="g-h2">LAST DROPS</h2>
+      <div class="pk-hist" id="pkHist"><span class="g-empty">아직 떨어뜨린 공이 없어요</span></div>
+      <div class="pk-stats" id="pkStats"></div>
+    </section>
+    <p class="g-note">공 하나 = 베팅 한 번 · 못마다 왼쪽/오른쪽 50:50 · 바닥 칸의 배수만큼 받아요 · 모든 설정 RTP 약 97%</p>
+  </div>
+</div>

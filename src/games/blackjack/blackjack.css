@@ -143,25 +143,25 @@ body.v-blackjack #bjView{display:block}
 #bjView .card-corner.bottom{align-self:flex-end;transform:rotate(180deg)}
 
 /* chips */
-:is(#bjView,#hlView,#twView,#clView) .bchip{--cc:#c8102e;--ce:#fff;--ct:#fff;width:44px;height:44px;border-radius:50%;border:none;cursor:pointer;position:relative;
+:is(#bjView,.gview) .bchip{--cc:#c8102e;--ce:#fff;--ct:#fff;width:44px;height:44px;border-radius:50%;border:none;cursor:pointer;position:relative;
   display:flex;align-items:center;justify-content:center;font:700 11px/1 "Inter",sans-serif;color:var(--ct);
   background:radial-gradient(circle,var(--cc) 0 52%,var(--ce) 53% 57%,var(--cc) 58% 64%,transparent 65%),
              repeating-conic-gradient(var(--cc) 0 22.5deg,var(--ce) 22.5deg 45deg);
   box-shadow:0 3px 0 rgba(0,0,0,.4),0 5px 10px rgba(0,0,0,.45),inset 0 0 0 1px rgba(0,0,0,.35);
   text-shadow:0 1px 0 rgba(0,0,0,.4);transition:transform .15s ease,box-shadow .15s ease}
-:is(#bjView,#hlView,#twView,#clView) .bchip:hover{transform:translateY(-3px)}
-:is(#bjView,#hlView,#twView,#clView) .bchip:active{transform:scale(.95)}
-:is(#bjView,#hlView,#twView,#clView) .bchip[data-val="5"]{--cc:#c8102e}
-:is(#bjView,#hlView,#twView,#clView) .bchip[data-val="25"]{--cc:#13843f}
-:is(#bjView,#hlView,#twView,#clView) .bchip[data-val="100"]{--cc:#151515;--ce:#e8b84a;--ct:#ffd36b}
-:is(#bjView,#hlView,#twView,#clView) .bchip[data-val="500"]{--cc:#6a3fae}
-:is(#bjView,#hlView,#twView,#clView) .bchip[data-val="1000"]{--cc:#f2b705;--ce:#7a4a00;--ct:#2a1a00}
-:is(#bjView,#hlView,#twView,#clView) .bchip[data-val="1000"],:is(#bjView,#hlView,#twView,#clView) .bchip[data-val="5000"]{text-shadow:none}
-:is(#bjView,#hlView,#twView,#clView) .bchip[data-val="5000"]{--cc:#ff7a1a;--ce:#fff;--ct:#2a0d00}
-:is(#bjView,#hlView,#twView,#clView) .bchip[data-val="25000"]{--cc:#1fb6c9;--ce:#120620;--ct:#fff}
-:is(#bjView,#hlView,#twView,#clView) .bchip.selected{box-shadow:0 0 0 2px var(--gold-hi),0 0 14px rgba(255,211,107,.7),0 5px 10px rgba(0,0,0,.45)}
-:is(#bjView,#hlView,#twView,#clView) .bchip.mini{width:32px;height:32px;font-size:8px;cursor:default}
-:is(#bjView,#hlView,#twView,#clView) .bchip.mini:hover{transform:none}
+:is(#bjView,.gview) .bchip:hover{transform:translateY(-3px)}
+:is(#bjView,.gview) .bchip:active{transform:scale(.95)}
+:is(#bjView,.gview) .bchip[data-val="5"]{--cc:#c8102e}
+:is(#bjView,.gview) .bchip[data-val="25"]{--cc:#13843f}
+:is(#bjView,.gview) .bchip[data-val="100"]{--cc:#151515;--ce:#e8b84a;--ct:#ffd36b}
+:is(#bjView,.gview) .bchip[data-val="500"]{--cc:#6a3fae}
+:is(#bjView,.gview) .bchip[data-val="1000"]{--cc:#f2b705;--ce:#7a4a00;--ct:#2a1a00}
+:is(#bjView,.gview) .bchip[data-val="1000"],:is(#bjView,.gview) .bchip[data-val="5000"]{text-shadow:none}
+:is(#bjView,.gview) .bchip[data-val="5000"]{--cc:#ff7a1a;--ce:#fff;--ct:#2a0d00}
+:is(#bjView,.gview) .bchip[data-val="25000"]{--cc:#1fb6c9;--ce:#120620;--ct:#fff}
+:is(#bjView,.gview) .bchip.selected{box-shadow:0 0 0 2px var(--gold-hi),0 0 14px rgba(255,211,107,.7),0 5px 10px rgba(0,0,0,.45)}
+:is(#bjView,.gview) .bchip.mini{width:32px;height:32px;font-size:8px;cursor:default}
+:is(#bjView,.gview) .bchip.mini:hover{transform:none}
 
 /* controls */
 #bjView .controls{padding:6px 14px 14px;display:flex;flex-direction:column;align-items:center;gap:10px}
@@ -231,7 +231,7 @@ body.v-blackjack #bjView{display:block}
   #bjView .table-wrap{padding:2px 4px 6px}
   #bjView .table-felt{margin:12px 12px 14px;min-height:400px;border-radius:40% 40% 20px 20px / 22% 22% 20px 20px;
     box-shadow:inset 0 0 0 2px #000,inset 0 0 0 4px var(--gold),inset 0 0 0 5px #000,inset 0 0 60px rgba(0,0,0,.6),0 0 0 8px var(--rail-1),0 0 0 10px var(--rail-2),0 0 0 11px var(--gold-dim),0 20px 40px rgba(0,0,0,.6)}
-  :is(#bjView,#hlView,#twView,#clView) .bchip{width:36px;height:36px;font-size:9px}
+  :is(#bjView,.gview) .bchip{width:36px;height:36px;font-size:9px}
   #bjView .chip-tray{gap:5px}
   #bjView .chip-rack{padding:6px 8px 8px;margin-top:4px}
   #bjView .discard{width:32px;height:40px}
@@ -291,19 +291,19 @@ body.mono #bjView .card-rank{font-family:"Space Mono",monospace}
 body.mono #bjView .card-back{background:repeating-linear-gradient(45deg,#000 0 2px,#fff 2px 5px);border:2px solid #000}
 body.mono #bjView .card-back::before{inset:5px;background:#000;border:2px solid #fff;border-radius:1px}
 body.mono #bjView .card-back::after{font-family:"Archivo Black",Arial,sans-serif;color:#fff;text-shadow:none}
-body.mono :is(#bjView,#hlView,#twView,#clView) .bchip,body.mono :is(#bjView,#hlView,#twView,#clView) .bchip[data-val]{--ct:#000;font-family:"Space Mono",monospace;text-shadow:none;box-shadow:0 3px 0 #000;
+body.mono :is(#bjView,.gview) .bchip,body.mono :is(#bjView,.gview) .bchip[data-val]{--ct:#000;font-family:"Space Mono",monospace;text-shadow:none;box-shadow:0 3px 0 #000;
   background:radial-gradient(circle,#fff 0 50%,#000 51% 56%,#fff 57% 64%,transparent 65%),repeating-conic-gradient(#000 0 var(--seg,22.5deg),#fff var(--seg,22.5deg) calc(var(--seg,22.5deg)*2));
   border:2px solid #000}
-body.mono :is(#bjView,#hlView,#twView,#clView) .bchip[data-val="5"]{--seg:45deg}
-body.mono :is(#bjView,#hlView,#twView,#clView) .bchip[data-val="25"]{--seg:30deg}
-body.mono :is(#bjView,#hlView,#twView,#clView) .bchip[data-val="100"]{--seg:22.5deg}
-body.mono :is(#bjView,#hlView,#twView,#clView) .bchip[data-val="500"]{--seg:15deg}
-body.mono :is(#bjView,#hlView,#twView,#clView) .bchip[data-val="1000"]{--seg:11.25deg}
-body.mono :is(#bjView,#hlView,#twView,#clView) .bchip[data-val="5000"],body.mono :is(#bjView,#hlView,#twView,#clView) .bchip[data-val="25000"]{--ct:#fff;
+body.mono :is(#bjView,.gview) .bchip[data-val="5"]{--seg:45deg}
+body.mono :is(#bjView,.gview) .bchip[data-val="25"]{--seg:30deg}
+body.mono :is(#bjView,.gview) .bchip[data-val="100"]{--seg:22.5deg}
+body.mono :is(#bjView,.gview) .bchip[data-val="500"]{--seg:15deg}
+body.mono :is(#bjView,.gview) .bchip[data-val="1000"]{--seg:11.25deg}
+body.mono :is(#bjView,.gview) .bchip[data-val="5000"],body.mono :is(#bjView,.gview) .bchip[data-val="25000"]{--ct:#fff;
   background:radial-gradient(circle,#000 0 50%,#fff 51% 56%,#000 57% 64%,transparent 65%),repeating-conic-gradient(#fff 0 var(--seg),#000 var(--seg) calc(var(--seg)*2))}
-body.mono :is(#bjView,#hlView,#twView,#clView) .bchip[data-val="5000"]{--seg:22.5deg}
-body.mono :is(#bjView,#hlView,#twView,#clView) .bchip[data-val="25000"]{--seg:11.25deg}
-body.mono :is(#bjView,#hlView,#twView,#clView) .bchip.selected{box-shadow:0 0 0 2px #fff,0 0 0 4px #000}
+body.mono :is(#bjView,.gview) .bchip[data-val="5000"]{--seg:22.5deg}
+body.mono :is(#bjView,.gview) .bchip[data-val="25000"]{--seg:11.25deg}
+body.mono :is(#bjView,.gview) .bchip.selected{box-shadow:0 0 0 2px #fff,0 0 0 4px #000}
 body.mono #bjView .bbtn,body.mono #bjView .bbtn[class*="act-"]{background:#fff;color:#000;text-shadow:none;border:2.5px solid #000;border-radius:4px;box-shadow:0 5px 0 #000;
   font:700 13px/1 "Space Mono","Apple SD Gothic Neo",sans-serif;letter-spacing:.06em}
 body.mono #bjView .bbtn.primary,body.mono #bjView .act-hit{background:#000;color:#fff}

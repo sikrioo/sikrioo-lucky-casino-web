@@ -10,6 +10,7 @@
 | PERFECT STOP | `src/games/stopwatch` | 목표 시간에 정확히 멈추기 (SHOW / BLIND) |
 | HI-LO DICE | `src/games/hilo` | 주사위 2개, UNDER 7 / 7 / OVER 7 |
 | LUCKY CLAW | `src/games/claw` | Matter.js 물리 인형뽑기 + 가챠 개봉 |
+| LUCKY PLINKO | `src/games/plinko` | 8·12·16줄 × LOW·MID·HIGH, 최대 ×1000 |
 
 ## 개발
 
@@ -82,6 +83,18 @@ __claw.tune({ GRIP_N: 1.5, STR_STRONG: .08 });    // 튜닝 값 실험
 ```
 
 현재 값 기준 크기별 RTP는 약 0.84–0.87 (크기별 3,000판 시뮬레이션, 판별 편차 ±0.1 수준).
+
+## LUCKY PLINKO 확률
+
+못마다 `Casino.rnd(2)`로 공정한 50:50을 뽑아 경로를 먼저 정하고, 공은 그 경로를 따라 애니메이션만 한다
+(물리 엔진에 맡기면 확률을 보장할 수 없어서). 그래서 n줄에서 k번 칸에 떨어질 확률은 정확히 C(n,k)/2ⁿ이고,
+RTP는 `src/games/plinko/config.js`의 표에서 바로 계산된다 — 9개 표 모두 96.7–97.1%.
+
+```js
+__plinko.sample(200000, 16, 'high');   // 실제 난수로 뽑은 경험적 RTP와 칸별 횟수
+```
+
+뱅크롤은 정수라서 ×0.3 같은 소수 배당의 끝전은 모아뒀다가 1달러가 되면 지급한다 (RTP 손실 없음).
 
 ## 라이선스 / 크레딧
 

@@ -13,6 +13,7 @@ import './games/stopwatch/stopwatch.css';
 import './games/hilo/hilo.css';
 import './styles/games-mono.css';
 import './games/claw/claw.css';
+import './games/plinko/plinko.css';
 
 // ---- core
 import './core/casino.js';          // window.Casino: bank, theme, sound, router
@@ -26,6 +27,7 @@ import './core/game-kit.js';        // window.CasinoChipTray + shared game-shell
 import './games/stopwatch/stopwatch.js';
 import './games/hilo/hilo.js';
 import './games/claw/claw.js';
+import './games/plinko/plinko.js';
 
 // ---- boot: route once every game has finished its own DOMContentLoaded setup
 const go = () => { Casino.route(); Casino.updateTitle(); };

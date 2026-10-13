@@ -131,6 +131,15 @@ body.mono .a-die{fill:#fff;stroke:#000;stroke-width:3}
 body.mono .a-pip{fill:#000}
 
 .g-cl{--g:#ff8a00}
+
+.g-pk{--g:#a06bff}
+.a-pk-peg{fill:#e9e3ff}
+.a-pk-ball{fill:#ff6bd5;filter:drop-shadow(0 0 4px #ff2d95)}
+.a-pk-s0{fill:#3b2a5c}.a-pk-s1{fill:#ffd400}.a-pk-s2{fill:#ff8a00}.a-pk-s3{fill:#ff2d95}
+body.mono .a-pk-peg{fill:#000}
+body.mono .a-pk-ball{fill:#000;filter:none;stroke:#fff;stroke-width:1.5}
+body.mono .a-pk-s0,body.mono .a-pk-s1{fill:#fff;stroke:#000;stroke-width:2}
+body.mono .a-pk-s2,body.mono .a-pk-s3{fill:#000}
 @media (min-width:560px){ .games > .game:last-child:nth-child(odd){grid-column:1/-1} }
 .a-cl-rail{stroke:#c9d1db;stroke-width:4;stroke-linecap:round}
 .a-cl-cable{stroke:#c9d1db;stroke-width:1.5}

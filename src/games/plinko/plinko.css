@@ -1,0 +1,69 @@
+body.v-plinko #pkView{display:block}
+/* =========== LUCKY PLINKO =========== */
+#pkView .pk-cab{position:relative;border-radius:22px;padding:10px 10px 14px;
+  background:linear-gradient(90deg,rgba(0,0,0,.3),transparent 8%,transparent 92%,rgba(0,0,0,.3)),linear-gradient(180deg,#7a3cff,#4a17b0 45%,#22074f);
+  box-shadow:inset 0 0 0 3px #e9edf2,inset 0 0 0 5px #7d8794,inset 0 0 0 7px #f4f7fa,0 24px 50px rgba(0,0,0,.6),0 0 34px rgba(122,60,255,.4)}
+.pk-glass{position:relative;border-radius:12px;overflow:hidden;background:#0a0216;box-shadow:0 0 0 2px #000,0 0 0 5px #e9edf2,0 0 0 6px #5b6572}
+.pk-glass canvas{display:block;width:100%;aspect-ratio:360/400;touch-action:manipulation}
+.pk-msg{height:32px;margin-top:12px;display:flex;align-items:center;justify-content:center;padding:0 8px;overflow:hidden;white-space:nowrap;
+  background:#120a00;border-radius:6px;box-shadow:inset 0 0 0 2px #3a2400;
+  font:24px/1 "VT323","Apple SD Gothic Neo",sans-serif;color:var(--amber);text-shadow:0 0 6px rgba(255,176,0,.7)}
+
+.pk-opts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.pk-seg{display:flex;align-items:stretch;background:#000;border-radius:10px;padding:3px;gap:3px;box-shadow:inset 0 0 0 1.5px #3a3a3a}
+.pk-seg-l{display:flex;align-items:center;padding:0 5px 0 4px;font:15px/1 "VT323",monospace;color:var(--gold);letter-spacing:.1em}
+.pk-seg button{flex:1;appearance:none;border:0;cursor:pointer;border-radius:7px;padding:9px 0 8px;min-width:0;
+  font:400 13px/1 "Bungee",Impact,sans-serif;color:#bfaecc;background:transparent;transition:background .15s,color .15s}
+.pk-seg button[aria-checked="true"]{background:linear-gradient(180deg,#ff6bd5,#d6248f);color:#fff;box-shadow:0 0 12px rgba(255,45,149,.55);text-shadow:0 1px 0 rgba(0,0,0,.3)}
+.pk-seg button:disabled{opacity:.3;cursor:default}
+.pk-seg button:focus-visible{outline:2px solid #5ef2e6;outline-offset:1px}
+
+.pk-actions{display:grid;grid-template-columns:1fr 1.6fr;gap:10px;margin-top:12px}
+.pk-btn{appearance:none;border:0;cursor:pointer;color:#fff;user-select:none;-webkit-user-select:none;touch-action:manipulation;
+  background:radial-gradient(ellipse at 50% 25%,var(--hi),var(--c) 60%,var(--lo));
+  box-shadow:0 6px 0 var(--lo),0 8px 10px rgba(0,0,0,.45),inset 0 2px 1px rgba(255,255,255,.5);text-shadow:0 2px 0 rgba(0,0,0,.35);
+  transition:transform .05s,box-shadow .05s,filter .2s}
+.pk-btn small{display:block;font:16px/1 "VT323",monospace;margin-top:3px;opacity:.9;text-shadow:none}
+.pk-drop{--c:#18b84a;--hi:#a8ffbf;--lo:#0b5f24;height:66px;border-radius:34px;font:400 22px/1 "Bungee",Impact,sans-serif}
+.pk-auto{--c:#2a6cf0;--hi:#a9c8ff;--lo:#0f347a;height:66px;border-radius:16px;font:400 14px/1 "Bungee",Impact,sans-serif}
+.pk-auto.on{--c:#e0182b;--hi:#ff8a8a;--lo:#7a0610}
+.pk-btn:active:not(:disabled){transform:translateY(5px);box-shadow:0 1px 0 var(--lo),0 2px 4px rgba(0,0,0,.4),inset 0 2px 1px rgba(255,255,255,.4)}
+.pk-btn:disabled{filter:grayscale(.75) brightness(.7);cursor:default}
+.pk-btn:focus-visible{outline:3px solid #5ef2e6;outline-offset:3px}
+
+.pk-hist{display:flex;flex-wrap:wrap;gap:5px;justify-content:center}
+.pk-h{min-width:40px;height:26px;padding:0 6px;border-radius:6px;display:flex;align-items:center;justify-content:center;font:19px/1 "VT323",monospace;background:#000}
+.pk-h.lose{color:#c9b8ff;box-shadow:inset 0 0 0 1.5px #5b4a8a}
+.pk-h.win{color:#ffd400;box-shadow:inset 0 0 0 2px #ffd400}
+.pk-h.big{background:#ff2d95;color:#fff;box-shadow:0 0 10px #ff2d95}
+.pk-h.new{animation:histIn .4s cubic-bezier(.2,.9,.3,1.4)}
+.pk-stats{display:flex;justify-content:center;flex-wrap:wrap;gap:6px 14px;margin-top:10px;font:18px/1 "VT323","Apple SD Gothic Neo",monospace;color:var(--muted);letter-spacing:.04em}
+.pk-stats b{font-weight:400;color:var(--ink)}
+.pk-stats b.up{color:#5ef2e6}.pk-stats b.down{color:#ff8a8a}
+
+@media (max-width:380px){ .pk-seg-l{display:none} .pk-seg button{font-size:12px} }
+
+/* ---------- ’74 mono ---------- */
+body.mono #pkView .pk-cab{background:#fff;border-radius:6px;box-shadow:0 0 0 3px #000,10px 10px 0 3px #000}
+body.mono .pk-glass{background:#fff;border-radius:2px;box-shadow:0 0 0 3px #000}
+body.mono .pk-msg{background:#fff;color:#000;text-shadow:none;border-radius:0;box-shadow:inset 0 0 0 2px #000;
+  font:700 12px/1 "Space Mono","Apple SD Gothic Neo",sans-serif;letter-spacing:.08em;text-transform:uppercase}
+body.mono .pk-seg{background:#fff;border-radius:2px;box-shadow:inset 0 0 0 2px #000}
+body.mono .pk-seg-l{color:#000;font:700 9px/1 "Space Mono",monospace;letter-spacing:.18em}
+body.mono .pk-seg button{color:#000;border-radius:0;font:700 12px/1 "Space Mono",monospace}
+body.mono .pk-seg button[aria-checked="true"]{background:#000;color:#fff;box-shadow:none;text-shadow:none}
+body.mono .pk-btn{color:#000;text-shadow:none;background:#fff;border:2.5px solid #000;box-shadow:0 5px 0 #000}
+body.mono .pk-drop{background:#000;color:#fff;border-radius:34px;font:700 18px/1 "Space Mono",monospace;letter-spacing:.1em}
+body.mono .pk-auto{border-radius:4px;font:700 12px/1 "Space Mono",monospace;letter-spacing:.06em}
+body.mono .pk-auto.on{border-style:dashed}
+body.mono .pk-btn small{font:400 11px/1 "Space Mono",monospace;margin-top:5px}
+body.mono .pk-btn:active:not(:disabled){transform:translateY(4px);box-shadow:0 1px 0 #000}
+body.mono .pk-btn:disabled{filter:none;opacity:.3}
+body.mono .pk-btn:focus-visible,body.mono .pk-seg button:focus-visible{outline-color:#000}
+body.mono .pk-h{background:#fff;color:#000;border-radius:0;box-shadow:inset 0 0 0 1.5px #000;font:700 11px/1 "Space Mono",monospace}
+body.mono .pk-h.win{background:#000;color:#fff;box-shadow:none}
+body.mono .pk-h.big{background:#000;color:#fff;box-shadow:inset 0 0 0 2px #000,inset 0 0 0 3.5px #fff}
+body.mono .pk-stats{color:#000;font:400 11px/1 "Space Mono","Apple SD Gothic Neo",monospace}
+body.mono .pk-stats b,body.mono .pk-stats b.up,body.mono .pk-stats b.down{color:#000;font-weight:700}
+
+@media (prefers-reduced-motion: reduce){ .pk-h.new{animation:none} }
