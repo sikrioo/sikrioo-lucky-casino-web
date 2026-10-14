@@ -35,6 +35,7 @@ src/
     casino.js              window.Casino: 뱅크롤, 테마, 사운드, 해시 라우터, 게임 등록
     led.js                 window.CasinoLED: 7세그먼트 / 드럼 숫자판
     toast.js               Casino.toast()
+    vip.js                 Casino.wager() → VIP 등급 · 레이크백 금고 · ATM 하한 · 도감
     game-kit.js            window.CasinoChipTray + 게임 화면 공용 부분
   styles/                  공통 CSS (base, views, game-shell, 새 게임용 모노 테마)
   partials/svg-defs.html   공용 SVG 정의
@@ -59,6 +60,8 @@ Casino.register('plinko', {
 });
 ```
 
+돈이 실제로 걸리는 순간(스핀·딜·드롭·발사…)에는 `Casino.wager(금액, '<이름>')`을 꼭 부른다 — VIP 경험치와 레이크백이 여기서 쌓인다.
+
 `#plinko` 해시로 이동하면 `.view` 중 해당 화면이 보이고, 돈은 `Casino.bank` / `Casino.setBank()`로만 다룬다.
 테마는 `Casino.theme`(`'86'` | `'74'`)와 `Casino.onTheme(fn)`, 모노 테마 CSS는 `body.mono …` 셀렉터로 쓴다.
 
@@ -71,6 +74,23 @@ Casino.register('plinko', {
 2. `index.html` 에 `<!-- @include src/games/<이름>/<이름>.html -->` 추가
 3. `src/main.js` 에 CSS · JS import 추가 (JS는 `core` 다음, 부팅 코드 앞)
 4. `src/lobby/lobby.html` 에 로비 카드(`data-go="<이름>"`) 추가
+
+## VIP 클럽 · 도감
+
+- **경험치 = 누적 베팅액.** 이긴 금액이 아니라 플레이한 양으로 오른다.
+
+| 등급 | 누적 베팅 | 레이크백 | ATM 하한 |
+|---|---|---|---|
+| BRONZE | $0 | 0.5% | $1,000 |
+| SILVER | $5,000 | 1% | $2,000 |
+| GOLD | $25,000 | 1.5% | $5,000 |
+| PLATINUM | $100,000 | 2% | $10,000 |
+| DIAMOND | $500,000 | 3% | $25,000 |
+| BLACK | $2,500,000 | 4% | $50,000 |
+
+- **레이크백:** 베팅할 때마다 등급 비율만큼 VIP 금고에 쌓이고, 로비에서 받는다 (실질 RTP + 레이크백%).
+- **ATM:** 공짜 +1,000이 아니라 잔액이 하한보다 적을 때만 하한까지 채워준다. 하한 위의 돈은 직접 번 돈.
+- **도감:** LUCKY CLAW 상품 10종 × 등급 4 = 40칸. 개봉할 때 `Casino.collect('<모양><크기>:<등급>')`로 기록.
 
 ## LUCKY CLAW 밸런스
 

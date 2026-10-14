@@ -401,7 +401,7 @@ import { boxSVG, shapeIcon, gachaSVG, gachaShapeSVG, gemSVG, clawIcon } from './
     if (phase !== 'idle' || G || queue.length) return;
     Casino.audio();
     if (price > Casino.bank) { Casino.toast('뱅크롤이 부족해요 · 로비 ATM'); sfx.buzz(); return; }
-    Casino.setBank(Casino.bank - price);
+    Casino.setBank(Casino.bank - price); Casino.wager(price, 'claw');
     playPrice = price; startPlay();
     sfx.coin(); msg('◀ ▶ 로 맞추고 DROP'); refresh();
   }
@@ -417,7 +417,7 @@ import { boxSVG, shapeIcon, gachaSVG, gachaShapeSVG, gemSVG, clawIcon } from './
     Casino.audio();
     const cost = shakeCost();
     if (cost > Casino.bank) { Casino.toast('뱅크롤이 부족해요 · 로비 ATM'); sfx.buzz(); return; }
-    Casino.setBank(Casino.bank - cost);
+    Casino.setBank(Casino.bank - cost); Casino.wager(cost, 'claw');
     setGuard(true); setPhase('shake'); joltN = 0;
     msg('덜컹덜컹!'); refresh();
   }
@@ -957,6 +957,7 @@ import { boxSVG, shapeIcon, gachaSVG, gachaShapeSVG, gemSVG, clawIcon } from './
     if (payout) Casino.setBank(Casino.bank + payout);
     if (G.idx === 3) Casino.coinRain(50); else if (G.idx === 2) Casino.coinRain(18);
     hist.unshift({ k: G.k, s: G.shape, r: G.idx, m: eff }); if (hist.length > 14) hist.pop();
+    if (Casino.collect(`${G.shape}${G.k}:${G.idx}`)) setTimeout(() => Casino.toast(`도감 NEW · ${RAR[G.idx]} ${SIZES[G.k].name} ${SHAPE_NAME[G.shape]}`), 900);
     save(); renderHist();
     setTimeout(() => { gCollect.hidden = false; gCollect.focus({ preventScroll: true }); }, 800);
   }

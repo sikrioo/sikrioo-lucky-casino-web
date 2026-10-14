@@ -43,7 +43,7 @@ import { CHIPS, AUTO, crashPoint, multAt, timeFor } from './config.js';
     if (phase !== 'idle') return;
     if (bet > Casino.bank) { Casino.toast('뱅크롤이 부족해요 · 로비 ATM'); return; }
     Casino.audio();
-    Casino.setBank(Casino.bank - bet);
+    Casino.setBank(Casino.bank - bet); Casino.wager(bet, 'crash');
     live = { bet, cashed: 0 };
     stats.rounds++; stats.staked += bet;
     const u = (Casino.rnd(4294967295) + 1) / 4294967296;            // (0, 1]

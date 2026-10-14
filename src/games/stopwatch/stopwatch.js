@@ -87,7 +87,7 @@
   function start(ts) {
     if (bet <= 0) { Casino.toast('먼저 베팅하세요'); return; }
     if (bet > Casino.bank) { Casino.toast('뱅크롤이 부족해요 · 로비 ATM'); return; }
-    Casino.setBank(Casino.bank - bet);
+    Casino.setBank(Casino.bank - bet); Casino.wager(bet, 'stopwatch');
     phase = 'running'; t0 = ts; hidden = false; lastSec = 0;
     screen.classList.add('running'); screen.classList.remove('blind');
     marker.classList.remove('show'); verdict.className = 'tw-verdict'; verdict.innerHTML = '<em>' + (mode === 'blind' ? '2초 후 화면이 꺼져요' : '목표에서 멈추세요') + '</em>';

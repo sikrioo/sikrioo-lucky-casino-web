@@ -94,7 +94,7 @@ import { ROWS, RISKS, RISK_NAME, CHIPS, TABLES } from './config.js';
   function drop() {
     if (bet > Casino.bank) { Casino.toast('뱅크롤이 부족해요 · 로비 ATM'); stopAuto(); return false; }
     Casino.audio();
-    Casino.setBank(Casino.bank - bet);
+    Casino.setBank(Casino.bank - bet); Casino.wager(bet, 'plinko');
     const b = makeBall(); b.bet = bet; b.n = rows; b.risk = risk;
     balls.push(b);
     stats.balls++; stats.staked += bet;

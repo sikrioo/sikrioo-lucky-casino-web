@@ -20,6 +20,7 @@ import './games/crash/crash.css';
 import './core/casino.js';          // window.Casino: bank, theme, sound, router
 import './core/led.js';             // window.CasinoLED: 7-segment / drum counters
 import './core/toast.js';           // Casino.toast
+import './core/vip.js';             // Casino.wager / VIP tiers / rakeback / ATM floor / collection
 import './games/slot/slot.js';
 import './lobby/lobby.js';
 // ---- games

@@ -167,3 +167,70 @@ body.mono .a-cl-b3{fill:#000}
 body.mono .a-cl-rb{fill:#000}
 body.mono .a-cl-rb3{fill:#fff}
 body.mono .lb-fine{color:#000;font:400 11px/1.5 "Space Mono","Apple SD Gothic Neo",sans-serif}
+
+/* =========== VIP CLUB / COLLECTION / STATS =========== */
+.chip:disabled{opacity:.4;cursor:default}
+.vip-card{--tc:#d08a4a;margin-top:14px;border-radius:14px;padding:12px 14px;background:radial-gradient(ellipse at 0% 0%,color-mix(in srgb,var(--tc) 22%,transparent),transparent 60%),#0b0414;
+  box-shadow:inset 0 0 0 2px var(--tc),0 0 18px color-mix(in srgb,var(--tc) 30%,transparent)}
+.vip-top{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px}
+.vip-badge{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,#fff,var(--tc) 55%,#000 140%);box-shadow:0 0 14px color-mix(in srgb,var(--tc) 70%,transparent)}
+.vip-badge svg{width:22px;height:22px;fill:#1a0610}
+.vip-name{display:flex;flex-direction:column;gap:3px;min-width:0}
+.vip-l{font:15px/1 "VT323",monospace;color:var(--muted);letter-spacing:.06em;white-space:nowrap}
+.vip-l b{font-weight:400;color:var(--ink)}
+.vip-name strong{font:400 22px/1 "Bungee",Impact,sans-serif;color:var(--tc);text-shadow:0 0 10px color-mix(in srgb,var(--tc) 60%,transparent);font-weight:400}
+.vip-vault{display:grid;grid-template-columns:auto auto;grid-template-rows:auto auto;align-items:center;gap:2px 8px;text-align:right}
+.vip-vault .vip-l{grid-column:1}
+.vip-vault b{grid-column:1;font:400 22px/1 "VT323",monospace;color:#5ef2e6;text-shadow:0 0 6px #23d5c8}
+.vip-claim{grid-column:2;grid-row:1/3;padding:8px 12px}
+.vip-bar{margin-top:12px;height:10px;border-radius:5px;background:#000;box-shadow:inset 0 0 0 1px rgba(255,255,255,.15);overflow:hidden}
+.vip-bar i{display:block;height:100%;width:0;border-radius:5px;background:linear-gradient(90deg,color-mix(in srgb,var(--tc) 60%,#000),var(--tc));box-shadow:0 0 10px var(--tc);transition:width .6s cubic-bezier(.2,.8,.2,1)}
+.vip-meta{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:7px;font:13px/1.3 "Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;color:var(--muted)}
+.vip-meta span:last-child{color:var(--gold-hi)}
+
+.coll,.pstats{border-radius:14px;padding:12px;background:#0b0414;box-shadow:inset 0 0 0 2px var(--gold),inset 0 0 0 4px #000}
+.pstats{margin-top:14px}
+.coll-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:10px;font:15px/1.2 "Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;color:var(--ink)}
+.coll-head b{font:400 20px/1 "VT323",monospace;color:var(--gold-hi);letter-spacing:.06em}
+.coll-grid{display:grid;grid-template-columns:18px repeat(10,1fr);gap:4px;align-items:center}
+.coll-rar{font:400 12px/1 "Bungee",Impact,sans-serif;color:var(--rc);text-align:center;text-shadow:0 0 6px var(--rc)}
+.coll-cell{position:relative;aspect-ratio:1;border-radius:6px;display:grid;place-items:center;background:rgba(255,255,255,.04);box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
+.coll-cell svg{width:82%;height:82%;filter:grayscale(1) brightness(.6);opacity:.35}
+.coll-cell.got{background:radial-gradient(circle,color-mix(in srgb,var(--rc) 28%,transparent),transparent 75%);box-shadow:inset 0 0 0 1.5px var(--rc)}
+.coll-cell.got svg{filter:none;opacity:1}
+.coll-cell b{position:absolute;right:1px;bottom:0;font:400 12px/1 "VT323",monospace;color:#fff;text-shadow:0 0 3px #000,0 0 3px #000}
+.coll-note{margin-top:10px;text-align:center;font:12px/1.4 "Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;color:var(--muted)}
+.ps-rows{display:grid;gap:6px}
+.ps-row{display:grid;grid-template-columns:96px 1fr auto;align-items:center;gap:8px;font:17px/1 "VT323",monospace;color:var(--ink)}
+.ps-n{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:.04em}
+.ps-bar{height:8px;border-radius:4px;background:rgba(255,255,255,.07);overflow:hidden}
+.ps-bar i{display:block;height:100%;background:linear-gradient(90deg,#d6248f,#ff6bd5)}
+.ps-v{color:var(--gold-hi);min-width:64px;text-align:right}
+.ps-empty{font:13px/1 "Apple SD Gothic Neo",system-ui,sans-serif;color:var(--muted)}
+
+body.mono .vip-card{background:#fff;border-radius:2px;box-shadow:0 0 0 3px #000,6px 6px 0 3px #000;color:#000}
+body.mono .vip-badge{background:#000;box-shadow:none}
+body.mono .vip-badge svg{fill:#fff}
+body.mono .vip-l{color:#000;font:400 10px/1 "Space Mono",monospace;letter-spacing:.16em}
+body.mono .vip-l b{color:#000;font-weight:700}
+body.mono .vip-name strong{color:#000;text-shadow:none;font:400 24px/1 "Archivo Black",Arial,sans-serif;letter-spacing:-.03em}
+body.mono .vip-vault b{color:#000;text-shadow:none;font:700 16px/1 "Space Mono",monospace}
+body.mono .vip-claim{background:#000;color:#fff;border-color:#000}
+body.mono .vip-bar{border-radius:0;background:#fff;box-shadow:inset 0 0 0 2px #000;height:12px}
+body.mono .vip-bar i{border-radius:0;background:repeating-linear-gradient(45deg,#000 0 3px,#fff 3px 5px);box-shadow:none}
+body.mono .vip-meta,body.mono .vip-meta span:last-child{color:#000;font:400 11px/1.4 "Space Mono","Apple SD Gothic Neo",sans-serif}
+body.mono .coll,body.mono .pstats{background:#fff;border-radius:2px;box-shadow:0 0 0 3px #000}
+body.mono .coll-head{color:#000;font:700 11px/1.3 "Space Mono","Apple SD Gothic Neo",sans-serif;letter-spacing:.06em}
+body.mono .coll-head b{color:#000;font:700 13px/1 "Space Mono",monospace}
+body.mono .coll-rar{color:#000;text-shadow:none;font:700 11px/1 "Space Mono",monospace}
+body.mono .coll-cell{border-radius:0;background:#fff;box-shadow:inset 0 0 0 1px rgba(0,0,0,.2)}
+body.mono .coll-cell svg{filter:none;opacity:.12}
+body.mono .coll-cell.got{background:#fff;box-shadow:inset 0 0 0 2px #000}
+body.mono .coll-cell.got svg{opacity:1}
+body.mono .coll-cell b{color:#000;text-shadow:0 0 2px #fff,0 0 2px #fff;font:700 9px/1 "Space Mono",monospace}
+body.mono .coll-note,body.mono .ps-empty{color:#000;font:400 11px/1.5 "Space Mono","Apple SD Gothic Neo",sans-serif}
+body.mono .ps-row{color:#000;font:700 11px/1 "Space Mono",monospace}
+body.mono .ps-bar{border-radius:0;background:#fff;box-shadow:inset 0 0 0 1.5px #000}
+body.mono .ps-bar i{background:#000}
+body.mono .ps-v{color:#000}
+@media (max-width:420px){ .coll-grid{gap:3px} .vip-name strong{font-size:19px} }

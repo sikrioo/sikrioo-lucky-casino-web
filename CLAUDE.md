@@ -16,6 +16,8 @@ The owner talks in Korean; reply in informal, direct Korean.
 - Every screen must work in both themes: '86 deluxe and '74 mono (`body.mono …`, `Casino.theme === '74'`).
 - HTML partials are inlined with `<!-- @include path -->` in `index.html` (custom plugin in `vite.config.js`).
 - Blackjack initialises on `DOMContentLoaded`; the boot route in `main.js` must stay after it.
+- Every game calls `Casino.wager(amount, name)` when money is put at risk (not on refundable chip placement).
+  That drives VIP XP, rakeback and the per-game stats in the lobby (core/vip.js). Never pay rakeback any other way.
 
 ## LUCKY CLAW
 - Matter.js 0.20.0 (npm). 2D only; arms collide with prizes, not with the pit floor.

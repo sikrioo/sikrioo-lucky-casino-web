@@ -273,7 +273,7 @@ async function spin(){
   audio();
   const cost=totalBet(), nLines=BET_LINES[betLevel], coin=COINS[coinIdx];
   if(credits<cost){ msg(credits>0?'LOWER YOUR BET':'INSERT COIN'); sfx.buzz(); refresh(); return; }
-  spinning=true; credits-=cost; win=0; clearWins(); refresh();
+  spinning=true; credits-=cost; Casino.wager(cost,'slot'); win=0; clearWins(); refresh();
   msg('GOOD LUCK!'); bulbMode='spin'; sfx.start();
   const targets=reels.map(r=>rnd(r.data.length));
   await Promise.all(reels.map((r,i)=>r.spinTo(targets[i],950+i*430,2+i)));

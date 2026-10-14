@@ -111,7 +111,7 @@
     if (!total()) { Casino.toast('먼저 베팅하세요'); return; }
     Casino.audio();
     rolling = true; clearResult(); refresh();
-    last = { ...bets };
+    last = { ...bets }; Casino.wager(total(), 'hilo');
     msg('ROLLING…'); sfx.rattle();
     const a = 1 + Casino.rnd(6), b = 1 + Casino.rnd(6);
     setDie(dice[0], a, true); setTimeout(() => setDie(dice[1], b, true), 90);

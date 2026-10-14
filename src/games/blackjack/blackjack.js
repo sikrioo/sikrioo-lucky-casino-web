@@ -601,6 +601,7 @@ async function startDeal(){
   state.phase = 'dealing';
   renderControlsForPhase();
   state.lastBet = state.currentBet;
+  Casino.wager(state.currentBet, 'blackjack');
   state.hands = [newHand(state.currentBet)];
   state.dealer = {cards:[], holeHidden:true};
   state.activeHandIndex = 0;
@@ -690,6 +691,7 @@ async function offerInsurance(playerBJ){
       state.insurance.taken = true;
       state.insurance.bet = bet;
       state.bankroll -= bet;
+      Casino.wager(bet, 'blackjack');
       renderBankroll(true);
       cleanup();
       await proceedAfterInsuranceDecision(playerBJ);
@@ -778,6 +780,7 @@ async function playerDouble(){
   const hand = state.hands[state.activeHandIndex];
   if (!hand || !canDoubleHand(hand)) return;
   state.bankroll -= hand.bet;
+  Casino.wager(hand.bet, 'blackjack');
   hand.bet *= 2;
   hand.doubled = true;
   renderBankroll(true);
@@ -831,6 +834,7 @@ async function playerSplit(){
   const hand = state.hands[state.activeHandIndex];
   if (!hand || !canSplitHand(hand)) return;
   state.bankroll -= hand.bet;
+  Casino.wager(hand.bet, 'blackjack');
   renderBankroll(true);
   const isAcePair = hand.cards[0].rank==='A';
   const moved = hand.cards.pop();
