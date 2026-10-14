@@ -1,0 +1,32 @@
+<div class="view gview" id="crView">
+  <div class="gwrap">
+    <header class="g-head">
+      <button class="chip g-back" data-back type="button">← 로비</button>
+      <div class="g-title"><h1>LUCKY CRASH</h1><span class="g-sub" data-sub="Ride · Cash out|rocket nº 7 · cash out">Ride · Cash out</span></div>
+      <div class="g-bank"><span class="g-bank-l">BANKROLL</span><div class="g-led"><div class="seg" id="crBank"></div></div></div>
+    </header>
+
+    <section class="cr-cab">
+      <div class="cr-screen"><canvas id="crCanvas" aria-label="크래시 그래프"></canvas>
+        <div class="cr-big" id="crBig" aria-live="off">×1.00</div>
+        <div class="cr-sub" id="crSub"></div>
+      </div>
+      <div class="cr-msg" id="crMsg" aria-live="polite">칩을 고르고 BET · 터지기 전에 CASH OUT</div>
+      <div class="cr-auto">
+        <span class="cr-auto-l">AUTO CASH OUT</span>
+        <button class="cr-step" id="crAutoDn" type="button" aria-label="자동 캐시아웃 낮추기">−</button>
+        <output class="cr-auto-v" id="crAutoV">OFF</output>
+        <button class="cr-step" id="crAutoUp" type="button" aria-label="자동 캐시아웃 올리기">+</button>
+      </div>
+      <div class="g-rack"><div class="g-tray" id="crChips"></div></div>
+      <button class="cr-go" id="crGo" type="button"><span id="crGoL">BET</span><small id="crGoS">$25</small></button>
+    </section>
+
+    <section class="g-panel">
+      <h2 class="g-h2">LAST CRASHES</h2>
+      <div class="cr-hist" id="crHist"><span class="g-empty">아직 발사한 적이 없어요</span></div>
+      <div class="cr-stats" id="crStats"></div>
+    </section>
+    <p class="g-note">배수는 계속 오르다가 무작위 시점에 터져요 · 터지기 전에 CASH OUT 하면 베팅 × 그 배수 · 언제 빠지든 RTP 97%</p>
+  </div>
+</div>

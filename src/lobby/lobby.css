@@ -133,6 +133,18 @@ body.mono .a-pip{fill:#000}
 .g-cl{--g:#ff8a00}
 
 .g-pk{--g:#a06bff}
+.g-cr{--g:#ff5a3c}
+.a-cr-axis{stroke:rgba(233,227,255,.5);stroke-width:1.5}
+.a-cr-fill{fill:rgba(255,45,149,.25)}
+.a-cr-line{fill:none;stroke:#ff6bd5;stroke-width:3.5;stroke-linecap:round;filter:drop-shadow(0 0 4px #ff2d95)}
+.a-cr-flame{fill:#ffb000}.a-cr-body{fill:#f4f7fa;stroke:#7d8794;stroke-width:1}.a-cr-win{fill:#5ef2e6}
+.a-cr-x{font:400 20px "Bungee",Impact,sans-serif;fill:#fff}
+body.mono .a-cr-axis{stroke:#000;stroke-width:2.5}
+body.mono .a-cr-fill{fill:none}
+body.mono .a-cr-line{stroke:#000;filter:none}
+body.mono .a-cr-flame{fill:#000}
+body.mono .a-cr-body{fill:#fff;stroke:#000;stroke-width:2}body.mono .a-cr-win{fill:#000}
+body.mono .a-cr-x{font:700 18px "Space Mono",monospace;fill:#000}
 .a-pk-peg{fill:#e9e3ff}
 .a-pk-ball{fill:#ff6bd5;filter:drop-shadow(0 0 4px #ff2d95)}
 .a-pk-s0{fill:#3b2a5c}.a-pk-s1{fill:#ffd400}.a-pk-s2{fill:#ff8a00}.a-pk-s3{fill:#ff2d95}

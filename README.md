@@ -11,6 +11,7 @@
 | HI-LO DICE | `src/games/hilo` | 주사위 2개, UNDER 7 / 7 / OVER 7 |
 | LUCKY CLAW | `src/games/claw` | Matter.js 물리 인형뽑기 + 가챠 개봉 |
 | LUCKY PLINKO | `src/games/plinko` | 8·12·16줄 × LOW·MID·HIGH, 최대 ×1000 |
+| LUCKY CRASH | `src/games/crash` | 오르는 배수, 터지기 전에 캐시아웃 · 자동 캐시아웃 |
 
 ## 개발
 
@@ -95,6 +96,16 @@ __plinko.sample(200000, 16, 'high');   // 실제 난수로 뽑은 경험적 RTP�
 ```
 
 뱅크롤은 정수라서 ×0.3 같은 소수 배당의 끝전은 모아뒀다가 1달러가 되면 지급한다 (RTP 손실 없음).
+
+## LUCKY CRASH 확률
+
+베팅하는 순간 터지는 지점 X를 뽑는다: P(X ≥ x) = 0.97 / x (0.01 단위로 내림, 최대 ×10,000).
+그래서 어느 배수 x에서 캐시아웃하든 기대 수익은 x · 0.97 / x = **97%** — 일찍 빠지든 버티든 같다.
+×1.00(발사 직후 폭발)이 나올 확률은 약 4%.
+
+```js
+__crash.sample(400000, 2);   // 목표 ×2로 계속 캐시아웃했을 때의 경험적 RTP
+```
 
 ## 라이선스 / 크레딧
 

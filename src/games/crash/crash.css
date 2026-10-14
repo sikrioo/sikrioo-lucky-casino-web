@@ -1,0 +1,78 @@
+body.v-crash #crView{display:block}
+/* =========== LUCKY CRASH =========== */
+#crView .cr-cab{position:relative;border-radius:22px;padding:10px 10px 14px;
+  background:linear-gradient(90deg,rgba(0,0,0,.3),transparent 8%,transparent 92%,rgba(0,0,0,.3)),linear-gradient(180deg,#ff5a3c,#c4241a 45%,#5a0a08);
+  box-shadow:inset 0 0 0 3px #e9edf2,inset 0 0 0 5px #7d8794,inset 0 0 0 7px #f4f7fa,0 24px 50px rgba(0,0,0,.6),0 0 34px rgba(255,90,60,.35)}
+.cr-screen{position:relative;border-radius:12px;overflow:hidden;background:#05010d;box-shadow:0 0 0 2px #000,0 0 0 5px #e9edf2,0 0 0 6px #5b6572}
+.cr-screen canvas{display:block;width:100%;aspect-ratio:360/240}
+.cr-big{position:absolute;left:0;right:0;top:20%;text-align:center;pointer-events:none;
+  font:400 clamp(38px,12vw,56px)/1 "Bungee",Impact,sans-serif;color:#fff;text-shadow:0 0 18px rgba(255,45,149,.8),0 3px 0 rgba(0,0,0,.5);font-variant-numeric:tabular-nums}
+.cr-big.count{font-size:clamp(22px,7vw,32px);color:#ffd400;text-shadow:0 0 14px rgba(255,212,0,.8);animation:crBlink .3s steps(2) infinite}
+.cr-big.cashed{color:#18e05a;text-shadow:0 0 18px rgba(24,224,90,.8),0 3px 0 rgba(0,0,0,.5)}
+.cr-big.crashed{color:#ff3b4a;text-shadow:0 0 22px rgba(255,30,60,.9),0 3px 0 rgba(0,0,0,.5);animation:crShake .4s}
+.cr-sub{position:absolute;left:0;right:0;top:calc(20% + clamp(44px,13vw,62px));text-align:center;pointer-events:none;
+  font:22px/1 "VT323","Apple SD Gothic Neo",monospace;color:#fff;text-shadow:0 1px 0 #000;letter-spacing:.06em}
+@keyframes crBlink{50%{opacity:.35}}
+@keyframes crShake{20%{transform:translateX(-6px)}40%{transform:translateX(5px)}60%{transform:translateX(-3px)}80%{transform:translateX(2px)}}
+.cr-msg{height:32px;margin-top:12px;display:flex;align-items:center;justify-content:center;padding:0 8px;overflow:hidden;white-space:nowrap;
+  background:#120a00;border-radius:6px;box-shadow:inset 0 0 0 2px #3a2400;
+  font:21px/1 "VT323","Apple SD Gothic Neo",sans-serif;color:var(--amber);text-shadow:0 0 6px rgba(255,176,0,.7)}
+
+.cr-auto{display:flex;align-items:center;gap:6px;margin-top:10px;background:#000;border-radius:10px;padding:4px 4px 4px 10px;box-shadow:inset 0 0 0 1.5px #3a3a3a}
+.cr-auto-l{flex:1;min-width:0;white-space:nowrap;overflow:hidden;font:16px/1 "VT323",monospace;color:var(--gold);letter-spacing:.06em}
+.cr-auto-v{min-width:86px;text-align:center;font:400 18px/1 "Bungee",Impact,sans-serif;color:#5ef2e6;text-shadow:0 0 8px #23d5c8}
+.cr-step{appearance:none;border:0;cursor:pointer;width:42px;height:38px;border-radius:8px;font:400 22px/1 "Bungee",Impact,sans-serif;color:#fff;
+  background:linear-gradient(180deg,#4a3a56,#2a1a36);box-shadow:inset 0 1px 0 rgba(255,255,255,.2)}
+.cr-step:disabled{opacity:.3;cursor:default}
+.cr-step:focus-visible{outline:2px solid #5ef2e6;outline-offset:1px}
+
+.cr-go{display:block;width:100%;margin-top:12px;height:70px;border-radius:36px;appearance:none;border:0;cursor:pointer;color:#fff;
+  --c:#18b84a;--hi:#a8ffbf;--lo:#0b5f24;font:400 24px/1 "Bungee",Impact,sans-serif;user-select:none;-webkit-user-select:none;touch-action:manipulation;
+  background:radial-gradient(ellipse at 50% 25%,var(--hi),var(--c) 60%,var(--lo));
+  box-shadow:0 6px 0 var(--lo),0 8px 10px rgba(0,0,0,.45),inset 0 2px 1px rgba(255,255,255,.5);text-shadow:0 2px 0 rgba(0,0,0,.35);
+  transition:transform .05s,box-shadow .05s,filter .2s}
+.cr-go small{display:block;font:17px/1 "VT323",monospace;margin-top:4px;opacity:.95;text-shadow:none}
+.cr-go.cash{--c:#ff8a00;--hi:#ffe08a;--lo:#8a3c00;animation:crPulse .5s ease-in-out infinite alternate}
+@keyframes crPulse{to{filter:brightness(1.18)}}
+.cr-go:active:not(:disabled){transform:translateY(5px);box-shadow:0 1px 0 var(--lo),0 2px 4px rgba(0,0,0,.4),inset 0 2px 1px rgba(255,255,255,.4)}
+.cr-go:disabled{filter:grayscale(.75) brightness(.7);cursor:default;animation:none}
+.cr-go:focus-visible{outline:3px solid #5ef2e6;outline-offset:3px}
+
+.cr-hist{display:flex;flex-wrap:wrap;gap:5px;justify-content:center}
+.cr-h{min-width:52px;height:26px;padding:0 6px;border-radius:6px;display:flex;align-items:center;justify-content:center;font:19px/1 "VT323",monospace;background:#000}
+.cr-h.lo{color:#c9b8ff;box-shadow:inset 0 0 0 1.5px #5b4a8a}
+.cr-h.mid{color:#ffd400;box-shadow:inset 0 0 0 2px #ffd400}
+.cr-h.hi{background:#ff2d95;color:#fff;box-shadow:0 0 10px #ff2d95}
+.cr-h.new{animation:histIn .4s cubic-bezier(.2,.9,.3,1.4)}
+.cr-stats{display:flex;justify-content:center;flex-wrap:wrap;gap:6px 14px;margin-top:10px;font:18px/1 "VT323","Apple SD Gothic Neo",monospace;color:var(--muted);letter-spacing:.04em}
+.cr-stats b{font-weight:400;color:var(--ink)}
+.cr-stats b.up{color:#5ef2e6}.cr-stats b.down{color:#ff8a8a}
+
+/* ---------- ’74 mono ---------- */
+body.mono #crView .cr-cab{background:#fff;border-radius:6px;box-shadow:0 0 0 3px #000,10px 10px 0 3px #000}
+body.mono .cr-screen{background:#fff;border-radius:2px;box-shadow:0 0 0 3px #000}
+body.mono .cr-big{color:#000;text-shadow:none;font:700 clamp(34px,11vw,50px)/1 "Space Mono",monospace;letter-spacing:-.04em}
+body.mono .cr-big.count{color:#000;text-shadow:none;font-size:clamp(18px,6vw,26px);letter-spacing:.2em}
+body.mono .cr-big.cashed{color:#000;text-shadow:none;text-decoration:underline;text-decoration-thickness:4px;text-underline-offset:6px}
+body.mono .cr-big.crashed{color:#000;text-shadow:none;text-decoration:line-through;text-decoration-thickness:5px}
+body.mono .cr-sub{color:#000;text-shadow:none;font:700 11px/1 "Space Mono",monospace;letter-spacing:.2em}
+body.mono .cr-msg{background:#fff;color:#000;text-shadow:none;border-radius:0;box-shadow:inset 0 0 0 2px #000;
+  font:700 11px/1 "Space Mono","Apple SD Gothic Neo",sans-serif;letter-spacing:.04em;text-transform:uppercase}
+body.mono .cr-auto{background:#fff;border-radius:2px;box-shadow:inset 0 0 0 2px #000}
+body.mono .cr-auto-l{color:#000;font:700 9px/1 "Space Mono",monospace;letter-spacing:.18em}
+body.mono .cr-auto-v{color:#000;text-shadow:none;font:700 15px/1 "Space Mono",monospace}
+body.mono .cr-step{background:#000;border-radius:2px;box-shadow:none;font:700 18px/1 "Space Mono",monospace}
+body.mono .cr-go{background:#000;color:#fff;text-shadow:none;box-shadow:0 5px 0 #555;font:700 20px/1 "Space Mono",monospace;letter-spacing:.12em}
+body.mono .cr-go.cash{background:#fff;color:#000;box-shadow:inset 0 0 0 3px #000,0 5px 0 #000;animation:crMonoBlink .4s steps(2) infinite}
+@keyframes crMonoBlink{50%{background:#000;color:#fff}}
+body.mono .cr-go small{font:400 11px/1 "Space Mono",monospace;margin-top:6px}
+body.mono .cr-go:active:not(:disabled){transform:translateY(4px);box-shadow:0 1px 0 #000}
+body.mono .cr-go:disabled{filter:none;opacity:.3}
+body.mono .cr-go:focus-visible,body.mono .cr-step:focus-visible{outline-color:#000}
+body.mono .cr-h{background:#fff;color:#000;border-radius:0;box-shadow:inset 0 0 0 1.5px #000;font:700 11px/1 "Space Mono",monospace}
+body.mono .cr-h.mid{background:#000;color:#fff;box-shadow:none}
+body.mono .cr-h.hi{background:#000;color:#fff;box-shadow:inset 0 0 0 2px #000,inset 0 0 0 3.5px #fff}
+body.mono .cr-stats{color:#000;font:400 11px/1 "Space Mono","Apple SD Gothic Neo",monospace}
+body.mono .cr-stats b,body.mono .cr-stats b.up,body.mono .cr-stats b.down{color:#000;font-weight:700}
+
+@media (prefers-reduced-motion: reduce){ .cr-big.count,.cr-big.crashed,.cr-go.cash,.cr-h.new{animation:none} }
