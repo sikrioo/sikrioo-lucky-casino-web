@@ -8,7 +8,8 @@ import { TIERS, tierIndexFor } from '../src/shared/tiers.js';
 
 export class RgsError extends Error { constructor(code, message, status = 400) { super(message); this.code = code; this.status = status; } }
 
-export function createRgs({ db, registry, rules, engines, startingBalanceMinor = 100000 }) {
+export function createRgs({ db, registry, rules: initialRules, engines, startingBalanceMinor = 100000 }) {
+  let rules = initialRules;                 // swapped only by setRules (admin console, audited); each round records the one it used
   const q = sql => db.prepare(sql);
   const getPlayerByToken = q('SELECT * FROM player WHERE token = ?');
   const getPlayer = q('SELECT * FROM player WHERE id = ?');
@@ -193,7 +194,11 @@ export function createRgs({ db, registry, rules, engines, startingBalanceMinor =
     });
   }
 
-  /** books must balance: start + topups + wins + claims − bets = balance, for every player */
+  /** the next round uses the new ruleset; rounds already settled keep the version they recorded */
+  function setRules(compiled) { rules = compiled; }
+  const activeRules = () => rules;
+
+  /** books must balance: start + topups + wins + claims + adjustments − bets = balance, for every player */
   function reconcile() {
     const rows = q(`SELECT a.player_id, a.balance_minor, a.vault_ucent,
         (SELECT COALESCE(SUM(amount_minor), 0) FROM wallet_txn t WHERE t.player_id = a.player_id) AS ledger_minor,
@@ -202,5 +207,5 @@ export function createRgs({ db, registry, rules, engines, startingBalanceMinor =
     return rows.map(r => ({ player: r.player_id, balanceDiff: r.balance_minor - r.ledger_minor, vaultDiff: r.vault_ucent - r.ledger_ucent }));
   }
 
-  return { createPlayer, auth, decide, wallet, playRound, round, proof, rotateSeed, fairState, topup, claim, reconcile };
+  return { createPlayer, auth, decide, setRules, activeRules, wallet, playRound, round, proof, rotateSeed, fairState, topup, claim, reconcile };
 }

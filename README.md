@@ -136,6 +136,7 @@ __crash.sample(400000, 2);   // 목표 ×2로 계속 캐시아웃했을 때의 �
 npm run factory -- build all      # 모델 생성 + 정확 RTP + 몬테카를로 + 검증 → models/
 npm test                          # 수용 테스트 (난수 편향, 무결성, 룰 격리, 멱등성, 재현성, 원장, 실측 RTP)
 npm run server                    # RGS: http://127.0.0.1:8787/api (RGS_DB=data/casino.db 로 영속화)
+                                  # 어드민: http://127.0.0.1:8788/  (토큰은 RGS_ADMIN_TOKEN, 없으면 터미널에 출력)
 npm run dev                       # 다른 터미널에서. http://localhost:5173/?rgs=1 → 서버 모드
 ```
 
@@ -149,7 +150,11 @@ npm run dev                       # 다른 터미널에서. http://localhost:517
 | `factory/` | Math Factory CLI — 설정 `factory/configs/*.json` |
 | `models/` | 검증된 모델 (model.json · manifest.json · report.md) |
 | `rules/default.json` | 기본 룰셋 (profile `demo` 97%, `lowrtp` 92%, `classic` 하이로우 전통 규칙) |
+| `server/admin.js` · `admin/` | 어드민 콘솔 — 별도 포트·토큰. 개요(실측/이론 RTP, 원장 대사), 룰셋 미리보기·적용·롤백, 라운드 조회·검증, 잔액 정정(ADJUST), 감사 로그(해시 체인) |
 | `src/core/remote.js` · `verify.js` | 클라이언트 어댑터 · 브라우저 안 재계산 검증 |
+
+어드민 콘솔은 모델을 바꾸거나, 끝난 판을 고치거나, 공개 전 서버 시드를 보거나, 잔액을 직접 쓰거나, 플레이어의 룰 입력(profile)을
+바꿀 수 없다. 콘솔의 모든 쓰기는 `admin_audit` 해시 체인에 남고, 콘솔에서 적용한 룰셋은 DB에 남아 재시작 후에도 유지된다.
 
 서버 모드에서는 아직 플링코·하이로우만 열린다. 나머지 게임은 서버 돈에 로컬 결과가 섞이지 않도록 잠긴다.
 아티팩트(단일 HTML)에는 서버가 없으므로 항상 로컬 데모 모드로 돈다.

@@ -48,6 +48,9 @@ The owner talks in Korean; reply in informal, direct Korean.
 - Engines in server/games/ are shared by the server, the Factory simulator and the audit replay; keep them pure
   functions of (model, params, bet, rng). Money is integer cents; rakeback vault is micro-cents.
 - Every round: one SQLite transaction, Idempotency-Key required, proof replayable (`server/audit/verify.js`, `src/core/verify.js`).
+- Admin console (server/admin.js + admin/, port 8788, RGS_ADMIN_TOKEN): reads everything, writes only rulesets (preview → apply
+  with reason; rollback = re-apply) and ADJUST ledger entries (reason + Idempotency-Key). Every write goes into the admin_audit
+  hash chain. Keep it unable to touch models, settled rounds, unrevealed server seeds, balances directly or player profiles.
 - `npm test` must pass. Server mode only opens games listed in SUPPORTED (src/core/remote.js).
 
 ## Verifying changes
