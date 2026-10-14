@@ -16,10 +16,15 @@ window.Casino = (() => {
     get bank() { return bank; },
     setBank(v) {
       bank = Math.max(0, Math.min(MAX, Math.floor(v)));
-      save('casino-bank', String(bank));
+      if (!(C.remote && C.remote.on)) save('casino-bank', String(bank));   // server mode: the RGS owns the money
       bankL.forEach(f => f(bank));
     },
     onBank(f) { bankL.push(f); },
+    /** back to the locally stored demo bankroll (leaving server mode) */
+    reloadLocalBank() {
+      let v = 1000; try { const s = localStorage.getItem('casino-bank'); if (s !== null && !isNaN(+s)) v = +s; } catch (e) {}
+      C.setBank(v);
+    },
     get theme() { return theme; },
     setTheme(t) {
       theme = t === '74' ? '74' : '86';
@@ -51,6 +56,11 @@ window.Casino = (() => {
       const target = h && h !== 'lobby' && games[h] ? h : 'lobby';      // any game that called Casino.register()
       if (target === view && document.body.classList.contains('v-' + view)) return;
       const cur = games[view];
+      if (C.remote && !C.remote.supports(target)) {
+        try { history.replaceState(null, '', view === 'lobby' ? location.pathname + location.search : '#' + view); } catch (e) {}
+        if (C.toast) C.toast('RGS 서버 모드에서는 아직 플링코 · 하이로우만 열려 있어요');
+        return;
+      }
       if (cur && cur.canLeave && !cur.canLeave()) {
         try { history.replaceState(null, '', view === 'lobby' ? location.pathname + location.search : '#' + view); } catch (e) {}
         if (C.toast) C.toast('게임이 끝난 뒤에 이동할 수 있어요');

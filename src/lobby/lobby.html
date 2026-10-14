@@ -169,6 +169,18 @@
       <div class="ps-rows" id="psRows"></div>
     </section>
 
+    <section class="rgs-card" id="rgsCard" hidden aria-label="RGS 서버 모드">
+      <div class="coll-head"><span>RGS 서버 모드 <b class="rgs-state" id="rgsState">OFF</b></span><button class="chip" id="rgsToggle" type="button">켜기</button></div>
+      <p class="rgs-note" id="rgsNote">로컬 RGS가 응답해요. 켜면 결과와 잔액을 서버가 정하고, 끝난 판은 브라우저에서 다시 계산해 확인할 수 있어요.</p>
+      <div class="rgs-body" id="rgsBody" hidden>
+        <div class="rgs-row"><span>모델</span><b id="rgsModels">—</b></div>
+        <div class="rgs-row"><span>서버 시드 해시</span><code id="rgsHash">—</code></div>
+        <div class="rgs-row"><span>클라이언트 시드 · 논스</span><code id="rgsClient">—</code></div>
+        <div class="rgs-actions"><button class="chip" id="rgsRotate" type="button">시드 교체 · 공개 후 검증</button></div>
+        <div class="rgs-result" id="rgsResult" aria-live="polite"></div>
+      </div>
+    </section>
+
     <footer class="lb-foot">
       <button class="chip" id="lbTheme" type="button">’74 모노</button>
       <button class="chip" id="lbSound" type="button">소리 켬</button>

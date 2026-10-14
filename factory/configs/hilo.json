@@ -1,0 +1,11 @@
+{
+  "game": "hilo",
+  "version": "1.0.0",
+  "rounds": 300000,
+  "variants": [
+    { "id": "traditional", "target": 0.8333, "tolerance": 0.001, "note": "classic 1:1 and 4:1" },
+    { "id": "97", "target": 0.97, "tolerance": 0.005 },
+    { "id": "95", "target": 0.95, "tolerance": 0.005 },
+    { "id": "92", "target": 0.92, "tolerance": 0.005 }
+  ]
+}

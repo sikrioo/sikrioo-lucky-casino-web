@@ -1,0 +1,17 @@
+{
+  "game": "hilo",
+  "variant": "95",
+  "version": "1.0.0",
+  "sha256": "b9e8dd5cb57c3a27d5abb93df462c994b405bd25dbd2ba96e2c3ebb9944f40b5",
+  "verified": true,
+  "rtpPpm": 950000,
+  "maxMult100": 570,
+  "checks": [
+    "table shape",
+    "exact RTP within ±0.50% of 95.000%",
+    "Monte Carlo 300,000 rounds per combination within 4 SE of exact",
+    "max multiplier declared",
+    "deterministic replay"
+  ],
+  "factory": "lucky-strip-factory/1"
+}

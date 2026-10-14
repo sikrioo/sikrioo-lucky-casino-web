@@ -1,3 +1,4 @@
+import { verifyProof } from '../core/verify.js';
 import { KINDS, RAR, RC, SIZES, SHAPE_NAME } from '../games/claw/config.js';
 import { shapeIcon } from '../games/claw/art.js';
 
@@ -30,8 +31,8 @@ import { shapeIcon } from '../games/claw/art.js';
     atmBtn.disabled = short <= 0;
     atmNote.textContent = short > 0 ? `ATM은 잔액을 $${fmt(floor)}까지 채워줘요` : `모든 게임이 같은 자금을 써요 · ATM은 $${fmt(floor)} 아래일 때만`;
   };
-  atmBtn.onclick = () => {
-    const add = Casino.useAtm();
+  atmBtn.onclick = async () => {
+    const add = await Casino.useAtm();
     if (add) Casino.toast(`ATM · +$${fmt(add)}`); else Casino.toast(`ATM은 잔액이 $${fmt(Casino.atmFloor())} 아래일 때만 써요`);
     syncAtm();
   };
@@ -47,15 +48,15 @@ import { shapeIcon } from '../games/claw/art.js';
     $('vipFill').style.width = (v.progress * 100).toFixed(1) + '%';
     $('vipBar').setAttribute('aria-valuenow', Math.round(v.progress * 100));
     $('vipNext').textContent = v.next ? `다음 등급 ${tierName(v.next)}까지 $${fmt(Math.ceil(v.toNext))} 베팅` : '최고 등급이에요';
-    $('vipPerks').textContent = `레이크백 ${+(t.rake * 100).toFixed(1)}% · ATM $${fmt(t.atm)}`;
+    $('vipPerks').textContent = `레이크백 하우스 몫의 ${Math.round(t.rakebackShare * 100)}% · ATM $${fmt(t.atm)}${v.server ? ' · 서버' : ''}`;
     const vault = Math.floor(v.vault * 100) / 100;
     $('vipVault').textContent = '$' + (vault < 100 ? vault.toFixed(2) : fmt(Math.floor(vault)));
     $('vipClaim').disabled = v.vault < 1;
     renderStats(v);
     syncAtm();
   }
-  $('vipClaim').onclick = () => {
-    const pay = Casino.claimVault();
+  $('vipClaim').onclick = async () => {
+    const pay = await Casino.claimVault();
     if (pay) { Casino.toast(`VIP 금고 · +$${fmt(pay)}`); Casino.coinRain(Math.min(40, 8 + pay / 50 | 0)); }
   };
 
@@ -100,6 +101,45 @@ import { shapeIcon } from '../games/claw/art.js';
   Casino.onTheme(syncTheme); Casino.onSound(syncSound);
   syncTheme(); syncSound(); show();
 
-  renderVip(); renderColl();
-  Casino.register('lobby', { enter() { show(); renderVip(); renderColl(); } });
+  /* ---------- RGS server mode ---------- */
+  const R = Casino.remote;
+  function renderRgs() {
+    $('rgsCard').hidden = !R.available && !R.on;
+    $('rgsState').textContent = R.on ? 'ON' : 'OFF';
+    $('rgsCard').classList.toggle('on', R.on);
+    $('rgsToggle').textContent = R.on ? '끄기 (로컬 모드)' : '켜기';
+    $('rgsNote').hidden = R.on;
+    $('rgsBody').hidden = !R.on;
+    document.querySelectorAll('.game[data-go]').forEach(b => b.classList.toggle('locked', !R.supports(b.dataset.go)));
+    if (!R.on) return;
+    $('rgsModels').textContent = Object.values(R.games).map(g => `${g.game} ${g.model.variant}${/^\d+$/.test(g.model.variant) ? '%' : ''}`).join(' · ') || '—';
+    $('rgsHash').textContent = R.fair ? R.fair.seedHash.slice(0, 24) + '…' : '—';
+    $('rgsClient').textContent = R.fair ? `${R.fair.clientSeed} · ${R.fair.nonce}` : '—';
+  }
+  $('rgsToggle').onclick = async () => {
+    try { if (R.on) R.disable(); else await R.enable(); } catch (e) { Casino.toast('RGS 오류 · ' + e.message); }
+    renderRgs(); renderVip(); show();
+  };
+  $('rgsRotate').onclick = async () => {
+    const out = $('rgsResult');
+    out.textContent = '시드 교체 중…';
+    try {
+      const rot = await R.rotate();
+      const mine = R.recent.filter(x => x.seedHash === rot.revealed.seedHash);
+      let ok = 0, bad = [];
+      for (const x of mine) {
+        const proof = await R.proof(x.id), v = await verifyProof(proof, R.games[x.game]?.model);
+        if (v.ok) ok++; else bad.push(`${x.id.slice(2, 10)}: ${v.problems.join(', ')}`);
+      }
+      out.textContent = mine.length
+        ? `공개된 시드 ${rot.revealed.serverSeed.slice(0, 16)}… · 이번 시드로 친 ${mine.length}판 중 ${ok}판 재계산 일치${bad.length ? ' · 불일치: ' + bad.join(' / ') : ' ✔'}`
+        : `공개된 시드 ${rot.revealed.serverSeed.slice(0, 16)}… · 이 브라우저에서 이 시드로 친 판이 없어요`;
+      out.classList.toggle('bad', bad.length > 0);
+    } catch (e) { out.textContent = '실패 · ' + e.message; }
+    renderRgs();
+  };
+  R.onChange(() => { renderRgs(); if (Casino.view === 'lobby') { renderVip(); show(); } });
+
+  renderVip(); renderColl(); renderRgs();
+  Casino.register('lobby', { async enter() { show(); renderVip(); renderColl(); renderRgs(); if (R.on) { try { await R.refresh(); Casino.vipChanged(); renderRgs(); } catch (e) {} } } });
 })();

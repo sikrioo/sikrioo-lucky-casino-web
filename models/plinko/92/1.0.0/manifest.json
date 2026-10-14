@@ -1,0 +1,17 @@
+{
+  "game": "plinko",
+  "variant": "92",
+  "version": "1.0.0",
+  "sha256": "d1dad0e633d3b14a81b7736af3581accf9ea3633605942a588695a0fdc2e7acf",
+  "verified": true,
+  "rtpPpm": 919765,
+  "maxMult100": 95500,
+  "checks": [
+    "table shape",
+    "exact RTP within ±0.50% of 92.000%",
+    "Monte Carlo 300,000 rounds per combination within 4 SE of exact",
+    "max multiplier declared",
+    "deterministic replay"
+  ],
+  "factory": "lucky-strip-factory/1"
+}

@@ -1,0 +1,24 @@
+{
+  "game": "hilo",
+  "variant": "traditional",
+  "version": "1.0.0",
+  "rtpPpm": 833333,
+  "maxMult100": 500,
+  "data": {
+    "pay100": {
+      "low": 200,
+      "seven": 500,
+      "high": 200
+    },
+    "rtpPpm": {
+      "low": 833333,
+      "seven": 833333,
+      "high": 833333
+    },
+    "ways": {
+      "low": 15,
+      "seven": 6,
+      "high": 15
+    }
+  }
+}

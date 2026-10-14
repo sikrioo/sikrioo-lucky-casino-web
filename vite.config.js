@@ -19,5 +19,7 @@ function htmlIncludes() {
 
 export default defineConfig({
   plugins: [htmlIncludes(), viteSingleFile()],
-  build: { target: 'es2020', outDir: 'dist', assetsInlineLimit: 100000000, cssCodeSplit: false }
+  build: { target: 'es2020', outDir: 'dist', assetsInlineLimit: 100000000, cssCodeSplit: false },
+  // `npm run server` in another terminal, then open http://localhost:5173/?rgs=1 for RGS server mode
+  server: { proxy: { '/api': 'http://127.0.0.1:8787' } }
 });

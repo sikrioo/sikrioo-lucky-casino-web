@@ -79,16 +79,16 @@ Casino.register('plinko', {
 
 - **경험치 = 누적 베팅액.** 이긴 금액이 아니라 플레이한 양으로 오른다.
 
-| 등급 | 누적 베팅 | 레이크백 | ATM 하한 |
+| 등급 | 누적 베팅 | 레이크백 (하우스 몫의) | ATM 하한 |
 |---|---|---|---|
-| BRONZE | $0 | 0.5% | $1,000 |
-| SILVER | $5,000 | 1% | $2,000 |
-| GOLD | $25,000 | 1.5% | $5,000 |
-| PLATINUM | $100,000 | 2% | $10,000 |
-| DIAMOND | $500,000 | 3% | $25,000 |
-| BLACK | $2,500,000 | 4% | $50,000 |
+| BRONZE | $0 | 5% | $1,000 |
+| SILVER | $5,000 | 8% | $2,000 |
+| GOLD | $25,000 | 12% | $5,000 |
+| PLATINUM | $100,000 | 16% | $10,000 |
+| DIAMOND | $500,000 | 20% | $25,000 |
+| BLACK | $2,500,000 | 25% | $50,000 |
 
-- **레이크백:** 베팅할 때마다 등급 비율만큼 VIP 금고에 쌓이고, 로비에서 받는다 (실질 RTP + 레이크백%).
+- **레이크백:** 베팅액 × (1 − 게임 RTP) × 등급 비율(하우스 몫의 5~25%)이 VIP 금고에 쌓이고, 로비에서 받는다. 어떤 게임·등급에서도 실질 RTP가 100%를 넘지 않는다. 등급표는 `src/shared/tiers.js` (서버와 공유).
 - **ATM:** 공짜 +1,000이 아니라 잔액이 하한보다 적을 때만 하한까지 채워준다. 하한 위의 돈은 직접 번 돈.
 - **도감:** LUCKY CLAW 상품 10종 × 등급 4 = 40칸. 개봉할 때 `Casino.collect('<모양><크기>:<등급>')`로 기록.
 
@@ -126,6 +126,33 @@ __plinko.sample(200000, 16, 'high');   // 실제 난수로 뽑은 경험적 RTP�
 ```js
 __crash.sample(400000, 2);   // 목표 ×2로 계속 캐시아웃했을 때의 경험적 RTP
 ```
+
+## RGS 서버 모드 (P0 · P1)
+
+설계 문서: *LUCKY STRIP RGS · Math Factory 아키텍처 v3*. 결과는 서버만 정하고, 비즈니스 룰은 라운드 전에
+**검증된 모델과 한도만** 고르며, 끝난 판은 공개된 시드로 누구나 다시 계산할 수 있다.
+
+```bash
+npm run factory -- build all      # 모델 생성 + 정확 RTP + 몬테카를로 + 검증 → models/
+npm test                          # 수용 테스트 (난수 편향, 무결성, 룰 격리, 멱등성, 재현성, 원장, 실측 RTP)
+npm run server                    # RGS: http://127.0.0.1:8787/api (RGS_DB=data/casino.db 로 영속화)
+npm run dev                       # 다른 터미널에서. http://localhost:5173/?rgs=1 → 서버 모드
+```
+
+| 폴더 | 내용 |
+|---|---|
+| `server/rng/fair.js` | 시드 커밋 + HMAC-SHA256 스트림, rejection sampling, 가중 선택 |
+| `server/models/registry.js` | `models/` 로드, SHA-256 검증 — 한 바이트라도 다르면 부팅 거부 |
+| `server/rules/engine.js` | 룰 엔진 — 입력은 profile·game·mode·tier·betMinor뿐, 결과·승패는 볼 수 없음 |
+| `server/rgs.js` | 라운드 · 원장(정수 센트) · 멱등 키 · 레이크백 · 시드 교체 · proof |
+| `server/games/` | 게임 엔진 (현재 plinko, hilo) — Factory와 서버가 같은 코드 사용 |
+| `factory/` | Math Factory CLI — 설정 `factory/configs/*.json` |
+| `models/` | 검증된 모델 (model.json · manifest.json · report.md) |
+| `rules/default.json` | 기본 룰셋 (profile `demo` 97%, `lowrtp` 92%, `classic` 하이로우 전통 규칙) |
+| `src/core/remote.js` · `verify.js` | 클라이언트 어댑터 · 브라우저 안 재계산 검증 |
+
+서버 모드에서는 아직 플링코·하이로우만 열린다. 나머지 게임은 서버 돈에 로컬 결과가 섞이지 않도록 잠긴다.
+아티팩트(단일 HTML)에는 서버가 없으므로 항상 로컬 데모 모드로 돈다.
 
 ## 라이선스 / 크레딧
 

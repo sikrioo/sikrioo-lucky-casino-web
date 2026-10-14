@@ -106,14 +106,28 @@
     $('hlStats').innerHTML = `<span>LOW <b>${counts.low}</b></span><span>7 <b>${counts.seven}</b></span><span>HIGH <b>${counts.high}</b></span><span>${n}판</span>`;
   }
 
-  $('hlRoll').onclick = () => {
+  /* RGS server mode: the server rolls and pays; the payouts shown are the model's */
+  const R = Casino.remote;
+  const payOf = s => (R.on && R.games.hilo) ? R.games.hilo.model.data.pay100[s] / 100 : PAY[s];
+  const ODDS_LOCAL = { low: '1 : 1', seven: '4 : 1', high: '1 : 1' };
+  function syncOdds() {
+    ['low', 'seven', 'high'].forEach(s => { spotEl(s).querySelector('.hl-odds').textContent = R.on && R.games.hilo ? '×' + payOf(s) : ODDS_LOCAL[s]; });
+  }
+  R.onChange(syncOdds);
+
+  $('hlRoll').onclick = async () => {
     if (rolling) return;
     if (!total()) { Casino.toast('먼저 베팅하세요'); return; }
     Casino.audio();
     rolling = true; clearResult(); refresh();
     last = { ...bets }; Casino.wager(total(), 'hilo');
+    let server = null;
+    if (R.on) {
+      try { server = await R.play('hilo', total() * 100, { bets: { low: bets.low * 100, seven: bets.seven * 100, high: bets.high * 100 } }); }
+      catch (e) { Casino.toast(e.code === 'insufficient_funds' ? '뱅크롤이 부족해요 · 로비 ATM' : 'RGS · ' + e.message); rolling = false; refresh(); return; }
+    }
     msg('ROLLING…'); sfx.rattle();
-    const a = 1 + Casino.rnd(6), b = 1 + Casino.rnd(6);
+    const a = server ? server.outcome.dice[0] : 1 + Casino.rnd(6), b = server ? server.outcome.dice[1] : 1 + Casino.rnd(6);
     setDie(dice[0], a, true); setTimeout(() => setDie(dice[1], b, true), 90);
     setTimeout(() => {
       sfx.land();
@@ -123,14 +137,16 @@
       let pay = 0;
       ['low', 'seven', 'high'].forEach(s => {
         const el = spotEl(s);
-        if (s === win) { el.classList.add('win'); if (bets[s]) pay += bets[s] * PAY[s]; }
+        if (s === win) { el.classList.add('win'); if (bets[s]) pay += bets[s] * payOf(s); }
         else { el.classList.add(bets[s] ? 'lose' : 'dim'); }
       });
+      if (server) pay = server.payoutMinor / 100;                     // the server's settlement, to the cent
       const staked = total(), net = pay - staked;
-      if (pay) Casino.setBank(Casino.bank + pay);
+      if (server) R.showBalance(server.balanceMinor); else if (pay) Casino.setBank(Casino.bank + pay);
       if (pay && win === 'seven') { sfx.seven(); Casino.coinRain(Math.min(60, 16 + bets.seven / 50 | 0)); }
       else if (pay) sfx.win(); else sfx.lose();
-      msg(`${a} + ${b} = ${t} · ${NAME[win]} · ${net > 0 ? '+$' + fmt(net) : net < 0 ? '−$' + fmt(-net) : '본전'}`);
+      const money = x => x % 1 ? x.toFixed(2) : fmt(x);
+      msg(`${a} + ${b} = ${t} · ${NAME[win]} · ${net > 0 ? '+$' + money(net) : net < 0 ? '−$' + money(-net) : '본전'}`);
       setTimeout(() => {
         ['low', 'seven', 'high'].forEach(s => { bets[s] = 0; renderSpot(s); });
         rolling = false; refresh();
@@ -143,7 +159,7 @@
 
   Casino.register('hilo', {
     title: () => isMono() ? 'hi–lo dice — under/over 7' : 'HI-LO DICE — Under · Seven · Over',
-    enter() { refresh(); },
+    enter() { syncOdds(); refresh(); },
     canLeave: () => !rolling,
     leave() { refundAll(); clearResult(); msg('칩을 고르고 LOW · 7 · HIGH에 거세요'); }
   });

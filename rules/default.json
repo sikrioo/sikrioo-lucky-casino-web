@@ -1,0 +1,13 @@
+{
+  "ruleset": "lucky-strip-default",
+  "version": "1.0.0",
+  "defaults": { "model": "97", "minBetMinor": 100, "maxBetMinor": 2500000, "maxWinMinor": 2500000000, "enabled": true },
+  "rules": [
+    { "id": "demo-plinko", "priority": 10, "when": { "profile": "demo", "game": "plinko" }, "then": { "model": "97" } },
+    { "id": "demo-hilo", "priority": 10, "when": { "profile": "demo", "game": "hilo" }, "then": { "model": "97" } },
+    { "id": "classic-hilo", "priority": 20, "when": { "profile": "classic", "game": "hilo" }, "then": { "model": "traditional" } },
+    { "id": "lowrtp-plinko", "priority": 20, "when": { "profile": "lowrtp", "game": "plinko" }, "then": { "model": "92" } },
+    { "id": "lowrtp-hilo", "priority": 20, "when": { "profile": "lowrtp", "game": "hilo" }, "then": { "model": "92" } },
+    { "id": "high-roller-cap", "priority": 30, "when": { "betMinor": { "gte": 1000000 } }, "then": { "maxWinMinor": 500000000 } }
+  ]
+}

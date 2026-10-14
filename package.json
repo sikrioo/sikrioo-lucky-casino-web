@@ -3,11 +3,14 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "LUCKY STRIP — a browser casino (slot, blackjack, perfect stop, hi-lo, lucky claw) built as a single HTML file",
+  "description": "LUCKY STRIP \u2014 a browser casino (slot, blackjack, perfect stop, hi-lo, lucky claw) built as a single HTML file",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "server": "node --disable-warning=ExperimentalWarning server/index.js",
+    "factory": "node factory/cli.js",
+    "test": "node --disable-warning=ExperimentalWarning --test test/*.test.js"
   },
   "dependencies": {
     "matter-js": "0.20.0"

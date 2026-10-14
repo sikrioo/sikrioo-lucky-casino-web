@@ -40,6 +40,16 @@ The owner talks in Korean; reply in informal, direct Korean.
 - Auto cash-out pays exactly the target; manual pays the on-screen multiplier (floored to 0.01, always < X).
 - Can't leave while a bet is riding; after cashing out the rocket keeps flying and leaving is allowed.
 
+## RGS (server/, factory/, models/, rules/)
+- Server decides outcomes; rules choose only a verified model + limits BEFORE randomness. Rule inputs are a closed set
+  (profile, game, mode, tier, betMinor) — never add player results, balance history or anything about the round.
+- Never edit models/ by hand: change factory/configs or factory/games, run `npm run factory -- build <game>`.
+  A model the Factory did not verify, or whose bytes changed, stops the server from booting (by design).
+- Engines in server/games/ are shared by the server, the Factory simulator and the audit replay; keep them pure
+  functions of (model, params, bet, rng). Money is integer cents; rakeback vault is micro-cents.
+- Every round: one SQLite transaction, Idempotency-Key required, proof replayable (`server/audit/verify.js`, `src/core/verify.js`).
+- `npm test` must pass. Server mode only opens games listed in SUPPORTED (src/core/remote.js).
+
 ## Verifying changes
-Build, then drive `dist/index.html` with Playwright (Chromium is at /opt/pw-browsers in Claude sessions):
+Run `npm test`. Build, then drive `dist/index.html` with Playwright (Chromium is at /opt/pw-browsers in Claude sessions):
 no page errors, every view in both themes, a slot spin, a blackjack deal, a claw grab, and screenshots.

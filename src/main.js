@@ -21,6 +21,7 @@ import './core/casino.js';          // window.Casino: bank, theme, sound, router
 import './core/led.js';             // window.CasinoLED: 7-segment / drum counters
 import './core/toast.js';           // Casino.toast
 import './core/vip.js';             // Casino.wager / VIP tiers / rakeback / ATM floor / collection
+import './core/remote.js';          // Casino.remote: RGS server mode (local demo mode when no server)
 import './games/slot/slot.js';
 import './lobby/lobby.js';
 // ---- games

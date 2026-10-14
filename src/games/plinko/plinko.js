@@ -18,7 +18,7 @@ import { ROWS, RISKS, RISK_NAME, CHIPS, TABLES } from './config.js';
   let risk = RISKS.includes(saved.risk) ? saved.risk : 'mid';
   let bet = CHIPS.includes(saved.bet) ? saved.bet : 25;
   const save = () => { try { localStorage.setItem('casino-plinko', JSON.stringify({ rows, risk, bet })); } catch (e) {} };
-  const table = () => TABLES[rows][risk];
+  const table = () => (Casino.remote.on && Casino.remote.games.plinko) ? Casino.remote.games.plinko.model.data.tables[rows][risk].map(m => m / 100) : TABLES[rows][risk];
 
   /* ---------- board geometry (logical units) ---------- */
   const W = 360, H = 400;
@@ -77,7 +77,7 @@ import { ROWS, RISKS, RISK_NAME, CHIPS, TABLES } from './config.js';
   const msg = t => { msgEl.textContent = t; };
   const jit = s => (Math.random() - .5) * s;                       // cosmetic wobble only
 
-  function makeBall() {
+  function makeBall(path) {                                         // path: the server's coins in RGS mode
     const g = G, n = g.n;
     let r = 0;
     const pts = [{ x: g.cx + jit(g.sp * .3), y: g.top - g.dy * 1.6 }], hits = [];
@@ -85,13 +85,35 @@ import { ROWS, RISKS, RISK_NAME, CHIPS, TABLES } from './config.js';
       const j = r + 1;                                               // peg this ball strikes on row i
       pts.push({ x: g.pegX(i, j) + jit(g.sp * .12), y: g.pegY(i) - g.pegR - g.ballR * .85 });
       hits.push([i, j]);
-      r += Casino.rnd(2);                                            // the fair coin: 0 = left, 1 = right
+      r += path ? path[i] : Casino.rnd(2);                           // the fair coin: 0 = left, 1 = right
     }
     pts.push({ x: g.slotX(r) + jit(g.sp * .15), y: g.slotTop + g.slotH * .42 });
     return { pts, hits, seg: 0, t: 0, k: r, trail: [], hop: 95 + g.dy * 3 };
   }
 
+  /* RGS server mode: the server decides the path and pays; the ball only shows it */
+  const R = Casino.remote;
+  let inflight = 0, pendingMinor = 0;
+  const showServerBalance = () => R.showBalance((R.wallet ? R.wallet.balanceMinor : 0) - pendingMinor);
+  async function dropRemote() {
+    Casino.audio();
+    inflight++; refresh();
+    const n = rows, k = risk, stake = bet;
+    try {
+      const r = await R.play('plinko', stake * 100, { rows: n, risk: k });
+      if (n !== rows) { showServerBalance(); return; }                 // board changed meanwhile: settle silently
+      pendingMinor += r.payoutMinor;
+      const b = makeBall(r.outcome.path); b.bet = stake; b.n = n; b.risk = k; b.mult = r.outcome.mult100 / 100; b.payoutMinor = r.payoutMinor;
+      balls.push(b);
+      stats.balls++; stats.staked += stake;
+      showServerBalance(); sfx.drop(); run();
+    } catch (e) {
+      Casino.toast(e.code === 'insufficient_funds' ? '뱅크롤이 부족해요 · 로비 ATM' : 'RGS · ' + e.message); stopAuto();
+    } finally { inflight--; refresh(); }
+  }
+
   function drop() {
+    if (R.on) { if (bet > Casino.bank) { Casino.toast('뱅크롤이 부족해요 · 로비 ATM'); stopAuto(); return false; } dropRemote(); return true; }
     if (bet > Casino.bank) { Casino.toast('뱅크롤이 부족해요 · 로비 ATM'); stopAuto(); return false; }
     Casino.audio();
     Casino.setBank(Casino.bank - bet); Casino.wager(bet, 'plinko');
@@ -103,10 +125,13 @@ import { ROWS, RISKS, RISK_NAME, CHIPS, TABLES } from './config.js';
   }
 
   function land(b) {
-    const mult = TABLES[b.n][b.risk][b.k];
-    const owed = b.bet * mult + frac, pay = Math.floor(owed);
-    frac = owed - pay;
-    if (pay) Casino.setBank(Casino.bank + pay);
+    const mult = b.mult ?? TABLES[b.n][b.risk][b.k];
+    if (b.payoutMinor !== undefined) { pendingMinor -= b.payoutMinor; showServerBalance(); }   // server already paid
+    else {
+      const owed = b.bet * mult + frac, pay = Math.floor(owed);
+      frac = owed - pay;
+      if (pay) Casino.setBank(Casino.bank + pay);
+    }
     stats.back += b.bet * mult;
     slotFlash.set(b.k, performance.now());
     floats.push({ x: G.slotX(b.k), y: G.slotTop - 4, t0: performance.now(), text: '×' + fmtMult(mult), m: mult });
@@ -288,7 +313,7 @@ import { ROWS, RISKS, RISK_NAME, CHIPS, TABLES } from './config.js';
 
   function refresh() {
     bankLed(Casino.bank);
-    const busy = balls.length > 0 || !!auto;
+    const busy = balls.length > 0 || !!auto || inflight > 0;
     document.querySelectorAll('#pkRows button').forEach(b => { const on = +b.dataset.rows === rows; b.setAttribute('aria-checked', on); b.disabled = busy && !on; });
     document.querySelectorAll('#pkRisk button').forEach(b => { const on = b.dataset.risk === risk; b.setAttribute('aria-checked', on); b.disabled = busy && !on; });
     $('pkDropS').textContent = '$' + fmt(bet);
@@ -338,7 +363,7 @@ import { ROWS, RISKS, RISK_NAME, CHIPS, TABLES } from './config.js';
   Casino.register('plinko', {
     title: () => isMono() ? 'lucky plinko — 50:50 pegs' : 'LUCKY PLINKO — Drop · Bounce · Win',
     enter() { resize(); refresh(); draw(); },
-    canLeave: () => !balls.length && !auto,
+    canLeave: () => !balls.length && !auto && !inflight,
     leave() { stopAuto(); }
   });
 })();
